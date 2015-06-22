@@ -93,7 +93,7 @@ typedef Int32 ErrorCode;
 #define ERR_ALREADY_SETUP							-139 /** Component already setup      */
 #define ERR_NULL_PARAMETER						-140 /** Null input parameter         */
 #define ERR_NULL_DATAINFUNC						-141 /** Null data input function     */
-#define ERR_NULL_DATAOUTFUNC					-142 /** Null data output function    */
+#define ERR_NULL_MEMORYALLOCATE				-142 /** Null memory allocated    */
 #define ERR_NULL_CONTROLFUNC					-143 /** Null control function        */
 #define ERR_NULL_COMPLETIONFUNC				-144 /** Null completion function     */
 #define ERR_NULL_PROGRESSFUNC					-145 /** Null progress function       */

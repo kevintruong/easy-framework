@@ -59,6 +59,8 @@ extern "C"
 /*****************************************************************************
  *      Standard Types
  *****************************************************************************/
+#define Static static
+#define Typedef typedef
 #define Const const
 typedef signed   char   Int8,   *pInt8;     /*  8 bit   signed integer */
 typedef signed   short  Int16,  *pInt16;    /* 16 bit   signed integer */

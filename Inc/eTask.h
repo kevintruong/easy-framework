@@ -61,7 +61,7 @@ typedef struct eTask_st {
 	TaskPriority_t TaskPriority;
 	Bool IsTriggerProcess;
 	Bool IsTriggerImmediately;
-};
+}eTask_t;
 
 /******************************************************************************/ 
 /* 										  			Macro definition section												*/
