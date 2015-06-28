@@ -42,6 +42,8 @@ extern "C"
 /******************************************************************************/
 
 #include "eTypes.h"
+#include "eError.h"
+#include "eMacro.h"
 
 #ifdef __cplusplus
 }
