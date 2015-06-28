@@ -1,0 +1,6 @@
+01:34:40 **** Incremental Build of configuration Debug for project eFrameworkSharedLib ****
+make all 
+make: Nothing to be done for `all'.
+
+01:34:40 Build Finished (took 74ms)
+

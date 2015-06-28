@@ -29,18 +29,18 @@
 								<option id="gnu.c.compiler.exe.debug.option.debugging.level.141371256" name="Debug Level" superClass="gnu.c.compiler.exe.debug.option.debugging.level" value="gnu.c.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.c.compiler.option.include.paths.1995978298" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/eFrameworkSharedLib/eFramework_Inc}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/CuTesting}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/CuTest}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/eFrameworkSharedLib/Standard_Inc}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1889219634" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.exe.debug.353215253" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.debug">
 								<option id="gnu.c.link.option.paths.420795055" name="Library search path (-L)" superClass="gnu.c.link.option.paths" valueType="libPaths">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/CuTesting/Lib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/CuTest/Lib}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/eFrameworkSharedLib/Debug}&quot;"/>
 								</option>
 								<option id="gnu.c.link.option.libs.358728634" name="Libraries (-l)" superClass="gnu.c.link.option.libs" valueType="libs">
-									<listOptionValue builtIn="false" value="CuTesting"/>
+									<listOptionValue builtIn="false" value="CuTest"/>
 									<listOptionValue builtIn="false" value="eFrameworkSharedLib"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.linker.input.1694936317" superClass="cdt.managedbuild.tool.gnu.c.linker.input">
@@ -136,4 +136,5 @@
 			</target>
 		</buildTargets>
 	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 </cproject>
