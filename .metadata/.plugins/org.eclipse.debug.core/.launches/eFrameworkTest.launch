@@ -17,4 +17,7 @@
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
 <listEntry value="4"/>
 </listAttribute>
+<mapAttribute key="org.eclipse.debug.core.environmentVariables">
+<mapEntry key="LD_LIBRARY_PATH" value="/home/kevin/WORKING/EclipseWordSpace/eWorkSpace/eFrameWork/Lib/DynamicLib/"/>
+</mapAttribute>
 </launchConfiguration>
