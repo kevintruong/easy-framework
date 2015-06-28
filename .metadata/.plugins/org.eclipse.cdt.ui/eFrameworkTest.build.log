@@ -1,0 +1,10 @@
+01:50:18 **** Incremental Build of configuration Debug for project eFrameworkTest ****
+make all 
+Building target: eFrameworkTest
+Invoking: GCC C Linker
+gcc -L"/home/kevin/WORKING/EclipseWordSpace/eWorkSpace/CuTest/Lib" -L"/home/kevin/WORKING/EclipseWordSpace/eWorkSpace/eFrameWork/Lib/LibeFrameworkShare/Debug" -o "eFrameworkTest"  ./Src/eFrameworkTestSuit.o ./Src/eFramworkTestMain.o   -lCuTest -leFrameworkSharedLib
+Finished building target: eFrameworkTest
+ 
+
+01:50:18 Build Finished (took 147ms)
+

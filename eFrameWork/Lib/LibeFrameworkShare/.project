@@ -35,6 +35,11 @@
 			<location>/home/kevin/WORKING/EclipseWordSpace/eWorkSpace/eFrameWork/Inc</location>
 		</link>
 		<link>
+			<name>eFramework_Lib</name>
+			<type>2</type>
+			<location>/home/kevin/WORKING/EclipseWordSpace/eWorkSpace/eFrameWork/Lib/DynamicLib</location>
+		</link>
+		<link>
 			<name>eFramework_Src</name>
 			<type>2</type>
 			<location>/home/kevin/WORKING/EclipseWordSpace/eWorkSpace/eFrameWork/Src</location>

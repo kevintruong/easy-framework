@@ -1,0 +1,38 @@
+!SESSION 2015-06-28 01:29:35.384 -----------------------------------------------
+eclipse.buildId=4.5.0.I20150603-2000
+java.version=1.7.0_79
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.cpp.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.cpp.product
+
+!ENTRY org.eclipse.cdt.core 1 0 2015-06-28 01:30:16.355
+!MESSAGE Indexed 'eFrameworkSharedLib' (3 sources, 25 headers) in 1.96 sec: 684 declarations; 1,214 references; 0 unresolved inclusions; 1 syntax errors; 0 unresolved names (0%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2015-06-28 01:30:28.512
+!MESSAGE Indexed 'CuTest' (1 sources, 54 headers) in 1.33 sec: 2,547 declarations; 6,254 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2015-06-28 01:31:14.255
+!MESSAGE Indexed 'eFrameworkTest' (2 sources, 6 headers) in 0.173 sec: 82 declarations; 86 references; 2 unresolved inclusions; 0 syntax errors; 7 unresolved names (4%)
+
+!ENTRY org.eclipse.egit.ui 4 0 2015-06-28 01:42:43.792
+!MESSAGE Failed to refresh projects from index changes
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Errors occurred while refreshing resources with the local file system.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.refreshResource(FileSystemResourceManager.java:960)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.refresh(FileSystemResourceManager.java:941)
+	at org.eclipse.core.internal.resources.Resource.refreshLocal(Resource.java:1593)
+	at org.eclipse.egit.ui.Activator$ResourceRefreshJob.runInWorkspace(Activator.java:418)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Contains: The project description file (.project) for 'eFrameworkSharedLib' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
+!SUBENTRY 1 org.eclipse.core.resources 4 271 2015-06-28 01:42:43.799
+!MESSAGE Errors occurred while refreshing resources with the local file system.
+!SUBENTRY 2 org.eclipse.core.resources 4 567 2015-06-28 01:42:43.799
+!MESSAGE The project description file (.project) for 'eFrameworkSharedLib' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
+
+!ENTRY org.eclipse.egit.ui 4 0 2015-06-28 01:42:43.953
+!MESSAGE Errors occurred while refreshing resources with the local file system.
+
+!ENTRY org.eclipse.core.resources 2 10035 2015-06-28 01:50:24.713
+!MESSAGE The workspace will exit with unsaved changes in this session.
