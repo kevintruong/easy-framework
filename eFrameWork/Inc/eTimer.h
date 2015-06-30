@@ -1,10 +1,11 @@
 /**************************************************************************/
 /*! 
-    @file     eTask.h
-    @author   KEVIN
+    @file     eTimer.h
+    @author   kevin
+		@email		kevin.truong.ds@gmail.com
     @section LICENSE
     Software License Agreement (BSD License)
-    Copyright (c) 2015 KEVIN
+    Copyright (c) 2015 kevin
     All rights reserved.
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions are met:
@@ -28,45 +29,34 @@
     SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 /**************************************************************************/
-#ifndef INC_ETASK_H_
-#define INC_ETASK_H_
+#ifndef EFRAMEWORK_INC_ETIMER_H_
+#define EFRAMEWORK_INC_ETIMER_H_
  
 #ifdef __cplusplus
 extern "C"
 {
 #endif
 
+#include "eInclude.h"
+
 /******************************************************************************/ 
 /* 										  			Include section 																*/
 /******************************************************************************/
-#include "eInclude.h"
  
 /******************************************************************************/ 
 /* 										  			Type definition section													*/
 /******************************************************************************/
+typedef enum TypeTimer_en{
+	PERIODIC_TIMER,
+	ONE_SHOT_TIMER
+}TypeTimer_t;
 
-typedef Error_t (*TaskHandleFn)(Void *);				/*<<<! Function pointer point to the method process the task*/
-typedef Error_t (*TaskSuspendFn)(Void *);				/*<<<! Function pointer point to the method process the task*/
-typedef Error_t (*TaskResumeFn)(Void *);				/*<<<! Function pointer point to the method process the task*/
-
-
-
-typedef enum TaskPrority_en {
-	LOW_LEVEL,
-	NORMAL_LEVEL,
-	HIGH_LEVEL,
-	HIGHEST_LEVEL
-}TaskPriority_t;
-
-typedef struct eTask_st {
-	UInt32 TaskId;					/*<<<! TaskId of a task */
-	TaskPriority_t TaskPriority;	/*<<<! Priority of task */
-	Bool IsTriggerProcess;			/*<<<! Flag to know the task is trigger to process or not */
-	TaskHandleFn taskHandle;		/*<<<! Function pointer point to Function process a task  */
-	TaskResumeFn taskResume;		/*<<<! Resume current task */
-	TaskSuspendFn taskSuspend;		/*<<<! suspend the task.  */
-}eTask_t;
-
+typedef struct eTimer_st
+{
+	UInt32 expireTimer;
+	UInt32 taskID;
+	TypeTimer_t typeTimer;
+}eTimer_t;
 /******************************************************************************/ 
 /* 										  			Macro definition section												*/
 /******************************************************************************/
@@ -79,4 +69,4 @@ typedef struct eTask_st {
 #ifdef __cplusplus
 }
 #endif
-#endif /* INC_ETASK_H_ */
+#endif /* EFRAMEWORK_INC_ETIMER_H_ */

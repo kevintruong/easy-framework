@@ -1,6 +1,6 @@
 /**************************************************************************/
 /*! 
-    @file     eOsalTaskHandle.c
+    @file     eTimerHandler.c
     @author   kevin
 		@email		kevin.truong.ds@gmail.com
     @section LICENSE
@@ -33,32 +33,23 @@
 /******************************************************************************/ 
 /* 										  			Include section 																*/
 /******************************************************************************/ 
-#include <eOsalTaskHandle.h>
-#include "eInclude.h"
-#include "eTask.h"
 #include <malloc.h>
+#include "eInclude.h"
+#include "eTimer.h"
+#include "eTimerHandler.h"
+#include "eTask.h"
+#include "eOsalTaskHandle.h"
 
 /******************************************************************************/ 
 /*   			Local Constant and compile switch definition section								*/
-/******************************************************************************/
-#ifndef DEBUG
-#define DEBUG 3
-#else
-#if defined(DEBUG) && DEBUG > 0
- #define DEBUG_PRINT(fmt, args...) fprintf(stderr, "DEBUG: %s:%d:%s(): " fmt, \
-    __FILE__, __LINE__, __func__, ##args)
-#else
- #define DEBUG_PRINT(fmt, args...) /* Don't do anything in release builds */
-#endif
-#endif
+/******************************************************************************/ 
+
+
 /******************************************************************************/ 
 /*  										Local Type definition section													*/
-/******************************************************************************/
-typedef struct TodoTaskList_st
-{
-	struct eTask_st *curTask;			/*<<<! Pointer to task data  */
-	struct TodoTaskList_st* pNextTask;	/*<<<! Pointer to next element of taskList  */
-}TodoTaskList_t;
+/******************************************************************************/ 
+
+
 
 /******************************************************************************/ 
 /*  								Local Macro definition section														*/
@@ -69,45 +60,57 @@ typedef struct TodoTaskList_st
 /******************************************************************************/ 
 /*  								Local (static) variable definition section								*/
 /******************************************************************************/ 
-TodoTaskList_t* eTodoTaskList;		/*<<<! Container hold all task element */
-eTaskHandleInf_t * taskHandleInf;			/*<<<! return interface to access container */
+TimerHandlerQueue_t *pTimerHandleQueue;
+TimerHandleQueueInf_st *pthisTimerHandleInf;
+eTask_t *timerTaskScheduler;
+
 
 /******************************************************************************/ 
 /*  								Local (static) function declaration section								*/
 /******************************************************************************/ 
-/**************************************************************************/
-/*!
-    @brief  TODO template for code document
-    @param  TODO
-    @param
-		@return TODO
-*/
-/**************************************************************************/
-Error_t eOsalTaskHandle_Add(eTask_t* newTask);
-/**************************************************************************/
-/*!
-    @brief  TODO template for code document
-    @param  TODO
-    @param
-		@return TODO
-*/
-/**************************************************************************/
-Error_t eOsalTaskHandle_Remove(UInt32 taskId);
-/**************************************************************************/
-/*!
-    @brief  TODO template for code document
-    @param  TODO
-    @param
-		@return TODO
-*/
-/**************************************************************************/
-Error_t eOsalTaskHandle_Sort(Void);
+
+
 
 /******************************************************************************/ 
 /*									Local function definition section 												*/
 /******************************************************************************/ 
+Error_t AddTimer(eTimer_t *newTimer)
+{
+	Error_t errCode = E_SUCCESS;
+
+	return errCode;
+}
 
 
+Error_t RemoveTimer(UInt32 TimerId)
+{
+	Error_t errCode = E_SUCCESS;
+
+	return errCode;
+}
+
+
+
+Error_t ScheduleHandle()
+{
+	Error_t errCode = E_SUCCESS;
+
+	return errCode;
+}
+
+Error_t ScheduleSuspend()
+{
+	Error_t errCode = E_SUCCESS;
+
+	return errCode;
+}
+
+Error_t ScheduleResume()
+{
+	Error_t errCode = E_SUCCESS;
+
+	return errCode;
+}
 /******************************************************************************/ 
 /*  						Global function definition section 														*/
 /******************************************************************************/
@@ -120,75 +123,56 @@ Error_t eOsalTaskHandle_Sort(Void);
 		@return TODO
 */
 /**************************************************************************/
-eTaskHandleInf_t *eOsalTaskHandle_Init(Void)
+TimerHandleQueueInf_st *eTimerHandlerRegisterInf()
 {
-	if (taskHandleInf)
+	if(pthisTimerHandleInf)
 	{
-		return taskHandleInf;
+		return pthisTimerHandleInf;
 	}
 	else
 	{
-		eTodoTaskList = malloc(sizeof(TodoTaskList_t));
-		if (NULL == eTodoTaskList)
+		pthisTimerHandleInf = malloc(sizeof(TimerHandleQueueInf_st));
+		if (!pthisTimerHandleInf)
 		{
-			DEBUG_PRINT("Can not allocate memory for TaskListContainer");
 			return NULL;
 		}
-		taskHandleInf = malloc(sizeof(eTaskHandleInf_t));
-		if (NULL == eTodoTaskList)
-		{
-			DEBUG_PRINT("Cannot allocate memory for TaskHandle Interface");
-			return NULL;
-		}
-		// TODO need to assign the implementation to interface
-		taskHandleInf->Add = eOsalTaskHandle_Add;
-		taskHandleInf->Remove = eOsalTaskHandle_Remove;
-		taskHandleInf->Sort = eOsalTaskHandle_Sort;
-		return taskHandleInf;
+		pthisTimerHandleInf->add = AddTimer;
+		pthisTimerHandleInf->remove = RemoveTimer;
+
+		pTimerHandleQueue = malloc(sizeof(TimerHandlerQueue_t));
+		return pthisTimerHandleInf;
 	}
 }
 
-/**************************************************************************/
-/*!
-    @brief  TODO template for code document
-    @param  TODO
-    @param
-		@return TODO
-*/
-/**************************************************************************/
-Error_t eOsalTaskHandle_Add(eTask_t* newTask)
+
+Error_t eTimerHandlerInitSchedule()
 {
-	Error_t errorCode = E_SUCCESS;
-	//TODO implement add new task to task list
-	return errorCode;
+	eTaskHandleInf_t *pThisTaskHandler;
+	if(timerTaskScheduler)
+	{
+		return E_SUCCESS;
+	}
+	else
+	{
+		timerTaskScheduler = malloc(sizeof(eTask_t));
+		if (!timerTaskScheduler)
+		{
+			return E_ERR_NULL_MEMALLOCFUNC;
+		}
+		timerTaskScheduler->IsTriggerProcess = False;
+		timerTaskScheduler->TaskId = &timerTaskScheduler;
+		timerTaskScheduler->taskHandle = ScheduleHandle;
+		timerTaskScheduler->taskSuspend = ScheduleSuspend;
+		timerTaskScheduler->taskResume = ScheduleResume;
+		pThisTaskHandler = eOsalTaskHandle_Init();
+
+		if(pThisTaskHandler->Add(timerTaskScheduler)!= E_SUCCESS)
+		{
+			return E_ERROR; // TODO need to add error for can not add new task by eOsalTaskHandler
+		}
+		return E_SUCCESS;
+	}
 }
 
-/**************************************************************************/
-/*!
-    @brief  TODO template for code document
-    @param  TODO
-    @param
-		@return TODO
-*/
-/**************************************************************************/
-Error_t eOsalTaskHandle_Remove(UInt32 taskId)
-{
-	Error_t errorCode = E_SUCCESS;
-	//TODO implement add remove task
-	return errorCode;
-}
 
-/**************************************************************************/
-/*!
-    @brief  TODO template for code document
-    @param  TODO
-    @param
-		@return TODO
-*/
-/**************************************************************************/
-Error_t eOsalTaskHandle_Sort(Void)
-{
-	Error_t errorCode = E_SUCCESS;
-	//TODO implement sort Task
-	return errorCode;
-}
+
