@@ -1,6 +1,6 @@
 /**************************************************************************/
 /*! 
- @file     eOsal.c
+ @file     eMain.c
  @author   kevin
  @email		kevin.truong.ds@gmail.com
  @section LICENSE
@@ -34,8 +34,8 @@
 /* 										  			Include section 																*/
 /******************************************************************************/
 #include "eInclude.h"
-#include <eOsalTaskHandle.h>
-
+#include "eOsal.h"
+#include "../TestModule/Inc/eTestModule.h"
 /******************************************************************************/
 /*   			Local Constant and compile switch definition section								*/
 /******************************************************************************/
@@ -51,8 +51,6 @@
 /******************************************************************************/
 /*  								Local (static) variable definition section								*/
 /******************************************************************************/
-eTaskHandleInf_t *thisTaskHandle;
-TodoTaskList_t *pTaskList;
 
 /******************************************************************************/
 /*  								Local (static) function declaration section								*/
@@ -66,53 +64,36 @@ TodoTaskList_t *pTaskList;
 /*  						Global function definition section 														*/
 /******************************************************************************/
 
-/******************************************************************************/
-/*!
+/**************************************************************************/
+/*! 
  @brief  TODO template for code document
-
- @param  None
- @return SUCCESS if none happen error
- Otherwise return error
+ @param  TODO
+ @param
+ @return TODO
  */
-/******************************************************************************/
-Error_t eOsalInit(Void)
-{
-	Error_t errorCode = E_SUCCESS;
-
-	thisTaskHandle = eOsalTaskHandle_RegisterInf();
-	if (!thisTaskHandle) {
-		errorCode = E_ERR_NULL_MEMALLOCFUNC;
-		return errorCode;
-	}
-
-	pTaskList = eOsalTaskHandle_GetTasksList();
-	if (!pTaskList) {
-		errorCode = E_ERR_NULL_MEMALLOCFUNC;
-		return errorCode;
-	}
-
-	return errorCode;
-}
-
-Void eOsal_Schedule(Void)
-{
-	eTask_t *pCurTask = pTaskList->curTask;
-
-	do {
-		if (pCurTask->IsTriggerProcess) {
-			pCurTask->taskHandle(NULL);
-		}
-		pCurTask = pTaskList->pNextTask->curTask;
-	}
-	while (pCurTask);
-	eOsal_EnterPowerDownMode(); // eOsal will enter powerdown mode when complete one check task
-	return;
-}
-
-Error_t eOsal_EnterPowerDownMode(Void)
+/**************************************************************************/
+Error_t main(Void)
 {
 	Error_t errCode = E_SUCCESS;
-
-	return errCode;
+	AppState_t appState = APP_REGISTER_INF_STATE;
+	while (1) {
+		switch (appState)
+		{
+		case APP_REGISTER_INF_STATE:
+			eOsalInit();
+			eTestModule_Init();
+			appState = APP_COMPONENTS_INIT_STATE;
+			break;
+		case APP_COMPONENTS_INIT_STATE:
+			appState = APP_RUNNING_STATE;
+			break;
+		case APP_RUNNING_STATE:
+			while (1) {
+				eOsal_Schedule();
+			}
+			break;
+		default:
+			break;
+		}
+	}
 }
-

@@ -1,6 +1,6 @@
 /**************************************************************************/
 /*! 
- @file     eOsal.c
+ @file     eTestModule.c
  @author   kevin
  @email		kevin.truong.ds@gmail.com
  @section LICENSE
@@ -33,8 +33,9 @@
 /******************************************************************************/
 /* 										  			Include section 																*/
 /******************************************************************************/
-#include "eInclude.h"
-#include <eOsalTaskHandle.h>
+#include <stdio.h>
+#include "../Inc/eTestModule.h"
+#include "eOsalTaskHandle.h"
 
 /******************************************************************************/
 /*   			Local Constant and compile switch definition section								*/
@@ -51,68 +52,57 @@
 /******************************************************************************/
 /*  								Local (static) variable definition section								*/
 /******************************************************************************/
-eTaskHandleInf_t *thisTaskHandle;
-TodoTaskList_t *pTaskList;
-
+eTask_t *pTestModuleTask;
 /******************************************************************************/
 /*  								Local (static) function declaration section								*/
 /******************************************************************************/
-
+Void eTestModule_TaskProcessing(Void *Object);
+Error_t TestModuleTaskConfigure();
 /******************************************************************************/
 /*									Local function definition section 												*/
 /******************************************************************************/
-
+Error_t TestModuleTaskConfigure(){
+	if(!pTestModuleTask)
+	{
+		return E_ERR_NULL_MEMALLOCFUNC;
+	}
+	pTestModuleTask->IsTriggerProcess = False;
+	pTestModuleTask->TaskId = pTestModuleTask;
+	pTestModuleTask->taskHandle = eTestModule_TaskProcessing;
+	pTestModuleTask->taskSuspend = NULL;
+	pTestModuleTask->taskResume = NULL;
+	pTestModuleTask->TaskPriority = NORMAL_LEVEL;
+	return E_SUCCESS;
+}
+Void eTestModule_TaskProcessing(Void *Object)
+{
+	printf("Hello, I'm Test Module Processing \n");
+	return;
+}
 /******************************************************************************/
 /*  						Global function definition section 														*/
 /******************************************************************************/
 
-/******************************************************************************/
-/*!
+/**************************************************************************/
+/*! 
  @brief  TODO template for code document
-
- @param  None
- @return SUCCESS if none happen error
- Otherwise return error
+ @param  TODO
+ @param
+ @return TODO
  */
-/******************************************************************************/
-Error_t eOsalInit(Void)
-{
-	Error_t errorCode = E_SUCCESS;
-
-	thisTaskHandle = eOsalTaskHandle_RegisterInf();
-	if (!thisTaskHandle) {
-		errorCode = E_ERR_NULL_MEMALLOCFUNC;
-		return errorCode;
-	}
-
-	pTaskList = eOsalTaskHandle_GetTasksList();
-	if (!pTaskList) {
-		errorCode = E_ERR_NULL_MEMALLOCFUNC;
-		return errorCode;
-	}
-
-	return errorCode;
-}
-
-Void eOsal_Schedule(Void)
-{
-	eTask_t *pCurTask = pTaskList->curTask;
-
-	do {
-		if (pCurTask->IsTriggerProcess) {
-			pCurTask->taskHandle(NULL);
-		}
-		pCurTask = pTaskList->pNextTask->curTask;
-	}
-	while (pCurTask);
-	eOsal_EnterPowerDownMode(); // eOsal will enter powerdown mode when complete one check task
-	return;
-}
-
-Error_t eOsal_EnterPowerDownMode(Void)
+/**************************************************************************/
+Error_t eTestModule_Init()
 {
 	Error_t errCode = E_SUCCESS;
+	pTestModuleTask = malloc(sizeof(eTask_t));
+	if (!pTestModuleTask)
+	{
+		return errCode = E_ERR_NULL_MEMALLOCFUNC;
+	}
+	TestModuleTaskConfigure();
 
+	eTaskHandleInf_t *pTaskHandlerInf = eOsalTaskHandle_RegisterInf();
+
+	pTaskHandlerInf->Add(pTestModuleTask);
 	return errCode;
 }
-

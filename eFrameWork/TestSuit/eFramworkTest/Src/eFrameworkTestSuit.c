@@ -34,7 +34,8 @@
 /* 										  			Include section 																*/
 /******************************************************************************/
 #include "CuTest.h"
-#include "eOsalTaskHandle.h"
+#include "eOsal.h"
+
 
 /******************************************************************************/
 /*   			Local Constant and compile switch definition section								*/
@@ -68,17 +69,26 @@ void TestReturnTaskHandleInf(CuTest *tc)
 {
 	UInt32 count = 0;
 	UInt32 false = 0;
-	while (count < DURATION_TEST_TIME)
-	{
-		count ++;
-		eTaskHandleInf_t *thisTaskHandle = eOsalTaskHandle_Init();
-		if (thisTaskHandle == NULL)
-		{
+	while (count < DURATION_TEST_TIME) {
+		count++;
+		eTaskHandleInf_t *thisTaskHandle = eOsalTaskHandle_RegisterInf();
+		if (thisTaskHandle == NULL) {
 			false++;
 			continue;
 		}
 	}
-	CuAssertIntEquals(tc,0,false);
+	CuAssertIntEquals(tc,
+										0,
+										false);
+}
+
+void Test_eOsalInit(CuTest *tc)
+{
+	Error_t errCode = eOsalInit();
+	CuAssertIntEquals_Msg(tc,
+												"eOsalInit Failed",
+												E_SUCCESS,
+												errCode);
 }
 /**************************************************************************/
 /*! 
@@ -88,8 +98,13 @@ void TestReturnTaskHandleInf(CuTest *tc)
  @return TODO
  */
 /**************************************************************************/
-CuSuite* eFrameworkGetSuite() {
+CuSuite* eFramework_GetTestSuite()
+{
 	CuSuite* suite = CuSuiteNew();
-	SUITE_ADD_TEST(suite, TestReturnTaskHandleInf);
+
+	SUITE_ADD_TEST(	suite,
+									TestReturnTaskHandleInf);
+	SUITE_ADD_TEST(	suite,
+									Test_eOsalInit);
 	return suite;
 }

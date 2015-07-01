@@ -39,12 +39,17 @@ extern "C"
 /* 										  			Include section 																*/
 /******************************************************************************/
 #include "eInclude.h"
-
+#include "eOsalTaskHandle.h"
+#include "eTimerHandler.h"
 
 /******************************************************************************/ 
 /* 										  			Type definition section													*/
 /******************************************************************************/
-
+typedef enum AppState_en{
+	APP_REGISTER_INF_STATE,
+	APP_COMPONENTS_INIT_STATE,
+	APP_RUNNING_STATE
+}AppState_t;
 /******************************************************************************/ 
 /* 										  			Macro definition section												*/
 /******************************************************************************/
@@ -70,7 +75,7 @@ Error_t eOsalInit(Void);
 		@return None
 */
 /******************************************************************************/
-Void EOsal_TaskPolling(Void);
+Void eOsal_Schedule(Void);
 
 
 #ifdef __cplusplus
