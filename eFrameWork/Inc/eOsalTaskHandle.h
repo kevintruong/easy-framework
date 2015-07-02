@@ -56,6 +56,12 @@ typedef struct eTaskHandleInf_st
 	SortTask Sort;
 }eTaskHandleInf_t;
 
+typedef struct TodoTaskList_st
+{
+	struct eTask_st *curTask;			/*<<<! Pointer to task data  */
+	struct TodoTaskList_st* pNextTask;	/*<<<! Pointer to next element of taskList  */
+}TodoTaskList_t;
+
 /******************************************************************************/ 
 /* 										  			Macro definition section												*/
 /******************************************************************************/
@@ -73,7 +79,9 @@ typedef struct eTaskHandleInf_st
 	@return TODO
 */
 /**************************************************************************/
-eTaskHandleInf_t *eOsalTaskHandle_Init(Void);
+eTaskHandleInf_t *eOsalTaskHandle_RegisterInf(Void);
+TodoTaskList_t *eOsalTaskHandle_GetTasksList();
+
 
 #ifdef __cplusplus
 }

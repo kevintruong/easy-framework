@@ -33,10 +33,12 @@
 /******************************************************************************/ 
 /* 										  			Include section 																*/
 /******************************************************************************/ 
+#include <stdio.h>
 #include "eInclude.h"
 #include "CuTest.h"
 #include "eOsal.h"
 #include "eOsalTaskHandle.h"
+
 /******************************************************************************/ 
 /*   			Local Constant and compile switch definition section								*/
 /******************************************************************************/ 
@@ -69,7 +71,7 @@
 /******************************************************************************/ 
 /*									Local function definition section 												*/
 /******************************************************************************/ 
-CuSuite* eFrameworkGetSuite();
+CuSuite* eFramework_GetTestSuite();
 
 /******************************************************************************/ 
 /*  						Global function definition section 														*/
@@ -78,7 +80,7 @@ void RunAllTests(void) {
 	CuString *output = CuStringNew();
 	CuSuite* suite = CuSuiteNew();
 
-	CuSuiteAddSuite(suite, eFrameworkGetSuite());
+	CuSuiteAddSuite(suite, eFramework_GetTestSuite());
 
 	CuSuiteRun(suite);
 	CuSuiteSummary(suite, output);
@@ -96,4 +98,5 @@ void RunAllTests(void) {
 Int32 main(Void)
 {
 	RunAllTests();
+	return 0;
 }

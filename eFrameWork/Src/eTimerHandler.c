@@ -160,11 +160,12 @@ Error_t eTimerHandlerInitSchedule()
 			return E_ERR_NULL_MEMALLOCFUNC;
 		}
 		timerTaskScheduler->IsTriggerProcess = False;
-		timerTaskScheduler->TaskId = &timerTaskScheduler;
+		timerTaskScheduler->TaskId = timerTaskScheduler;
 		timerTaskScheduler->taskHandle = ScheduleHandle;
 		timerTaskScheduler->taskSuspend = ScheduleSuspend;
 		timerTaskScheduler->taskResume = ScheduleResume;
-		pThisTaskHandler = eOsalTaskHandle_Init();
+
+		pThisTaskHandler = eOsalTaskHandle_RegisterInf();
 
 		if(pThisTaskHandler->Add(timerTaskScheduler)!= E_SUCCESS)
 		{
