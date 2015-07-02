@@ -106,3 +106,30 @@ Error_t eTestModule_Init()
 	pTaskHandlerInf->Add(pTestModuleTask);
 	return errCode;
 }
+
+
+Error_t eTestModule_Init1()
+{
+	Error_t errCode = E_SUCCESS;
+	eTask_t *ptestModule1;
+	ptestModule1 = malloc(sizeof(eTask_t));
+	if (!pTestModuleTask)
+	{
+		return errCode = E_ERR_NULL_MEMALLOCFUNC;
+	}
+	ptestModule1->IsTriggerProcess = True;
+	ptestModule1->taskHandle = eTestModule_TaskProcessing;
+	ptestModule1->TaskId = ptestModule1;
+
+	eTaskHandleInf_t *pTaskHandlerInf = eOsalTaskHandle_RegisterInf();
+
+	pTaskHandlerInf->Add(ptestModule1);
+	return errCode;
+}
+
+Error_t eTestModule_Deinit()
+{
+	Error_t errCode = E_SUCCESS;
+
+	return Error_t;
+}

@@ -84,7 +84,7 @@ void TestReturnTaskHandleInf(CuTest *tc)
 
 void Test_eOsalInit(CuTest *tc)
 {
-	Error_t errCode = eOsalInit();
+	Error_t errCode = eOsal_Init();
 	CuAssertIntEquals_Msg(tc,
 												"eOsalInit Failed",
 												E_SUCCESS,

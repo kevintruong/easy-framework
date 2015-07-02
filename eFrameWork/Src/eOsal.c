@@ -36,6 +36,13 @@
 #include "eInclude.h"
 #include <eOsalTaskHandle.h>
 
+#ifdef DEBUG
+#include <stdio.h>
+#define DEBUG_PRINT				printf
+#else
+#define DEBUG_PRINT
+#endif
+
 /******************************************************************************/
 /*   			Local Constant and compile switch definition section								*/
 /******************************************************************************/
@@ -75,7 +82,7 @@ TodoTaskList_t *pTaskList;
  Otherwise return error
  */
 /******************************************************************************/
-Error_t eOsalInit(Void)
+Error_t eOsal_Init(Void)
 {
 	Error_t errorCode = E_SUCCESS;
 
@@ -96,23 +103,26 @@ Error_t eOsalInit(Void)
 
 Void eOsal_Schedule(Void)
 {
-	eTask_t *pCurTask = pTaskList->curTask;
+	TodoTaskList_t *curr = pTaskList;
 
 	do {
-		if (pCurTask->IsTriggerProcess) {
-			pCurTask->taskHandle(NULL);
+		if (curr->curTask) {
+			if (curr->curTask->IsTriggerProcess) {
+				curr->curTask->taskHandle(NULL);
+			}
 		}
-		pCurTask = pTaskList->pNextTask->curTask;
+		curr = curr->pNextTask;
 	}
-	while (pCurTask);
-	eOsal_EnterPowerDownMode(); // eOsal will enter powerdown mode when complete one check task
+	while (curr);
+	eOsal_EnterPowerDownMode(); // eOsal will enter power down mode when complete one check task
 	return;
 }
 
 Error_t eOsal_EnterPowerDownMode(Void)
 {
 	Error_t errCode = E_SUCCESS;
-
+	DEBUG_PRINT("eOsal enter power down\n");
+	sleep(4);
 	return errCode;
 }
 

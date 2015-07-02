@@ -80,8 +80,10 @@ Error_t main(Void)
 		switch (appState)
 		{
 		case APP_REGISTER_INF_STATE:
-			eOsalInit();
+			eOsal_Init();
 			eTestModule_Init();
+			eTestModule_Init1();
+			eTestModule_Init1();
 			appState = APP_COMPONENTS_INIT_STATE;
 			break;
 		case APP_COMPONENTS_INIT_STATE:

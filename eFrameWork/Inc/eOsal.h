@@ -66,7 +66,7 @@ typedef enum AppState_en{
 						Otherwise return error
 */
 /******************************************************************************/
-Error_t eOsalInit(Void);
+Error_t eOsal_Init(Void);
 /******************************************************************************/
 /*!
     @brief  Osal will polling what task is needded to process
@@ -76,7 +76,7 @@ Error_t eOsalInit(Void);
 */
 /******************************************************************************/
 Void eOsal_Schedule(Void);
-
+Error_t eOsal_EnterPowerDownMode(Void);
 
 #ifdef __cplusplus
 }

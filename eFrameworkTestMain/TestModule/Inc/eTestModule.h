@@ -54,6 +54,7 @@ extern "C"
 /* 							  			 Function declaration section													*/
 /******************************************************************************/
 Error_t eTestModule_Init();
+Error_t eTestModule_Init1();
 #ifdef __cplusplus
 }
 #endif
