@@ -1,10 +1,11 @@
 /**************************************************************************/
 /*! 
-    @file     eOsal.h
-    @author   KEVIN
+    @file     eTestModule.h
+    @author   kevin
+		@email		kevin.truong.ds@gmail.com
     @section LICENSE
     Software License Agreement (BSD License)
-    Copyright (c) 2015 KEVIN
+    Copyright (c) 2015 kevin
     All rights reserved.
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions are met:
@@ -28,28 +29,23 @@
     SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 /**************************************************************************/
-#ifndef INC_EOSAL_H_
-#define INC_EOSAL_H_
+#ifndef TESTMODULE_INC_ETESTMODULE_H_
+#define TESTMODULE_INC_ETESTMODULE_H_
  
 #ifdef __cplusplus
 extern "C"
 {
 #endif
+
+
 /******************************************************************************/ 
 /* 										  			Include section 																*/
 /******************************************************************************/
-#include "eInclude.h"
-#include "eOsalTaskHandle.h"
-#include "eTimerHandler.h"
-
+#include "eTask.h"
 /******************************************************************************/ 
 /* 										  			Type definition section													*/
 /******************************************************************************/
-typedef enum AppState_en{
-	APP_REGISTER_INF_STATE,
-	APP_COMPONENTS_INIT_STATE,
-	APP_RUNNING_STATE
-}AppState_t;
+
 /******************************************************************************/ 
 /* 										  			Macro definition section												*/
 /******************************************************************************/
@@ -57,28 +53,9 @@ typedef enum AppState_en{
 /******************************************************************************/ 
 /* 							  			 Function declaration section													*/
 /******************************************************************************/
-/******************************************************************************/
-/*!
-    @brief  TODO template for code document
-
-    @param  None
-		@return SUCCESS if none happen error
-						Otherwise return error
-*/
-/******************************************************************************/
-Error_t eOsal_Init(Void);
-/******************************************************************************/
-/*!
-    @brief  Osal will polling what task is needded to process
-
-    @param  None
-		@return None
-*/
-/******************************************************************************/
-Void eOsal_Schedule(Void);
-Error_t eOsal_EnterPowerDownMode(Void);
-
+Error_t eTestModule_Init();
+Error_t eTestModule_Init1();
 #ifdef __cplusplus
 }
 #endif
-#endif /* INC_EOSAL_H_ */
+#endif /* TESTMODULE_INC_ETESTMODULE_H_ */
