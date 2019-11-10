@@ -77,18 +77,13 @@ void TestReturnTaskHandleInf(CuTest *tc)
 			continue;
 		}
 	}
-	CuAssertIntEquals(tc,
-										0,
-										false);
+	CuAssertIntEquals(tc, 0, false);
 }
 
 void Test_eOsalInit(CuTest *tc)
 {
 	Error_t errCode = eOsal_Init();
-	CuAssertIntEquals_Msg(tc,
-												"eOsalInit Failed",
-												E_SUCCESS,
-												errCode);
+	CuAssertIntEquals_Msg(tc, "eOsalInit Failed", E_SUCCESS, errCode);
 }
 /**************************************************************************/
 /*! 
@@ -102,9 +97,7 @@ CuSuite* eFramework_GetTestSuite()
 {
 	CuSuite* suite = CuSuiteNew();
 
-	SUITE_ADD_TEST(	suite,
-									TestReturnTaskHandleInf);
-	SUITE_ADD_TEST(	suite,
-									Test_eOsalInit);
+	SUITE_ADD_TEST(	suite, TestReturnTaskHandleInf);
+	SUITE_ADD_TEST(	suite, Test_eOsalInit);
 	return suite;
 }
