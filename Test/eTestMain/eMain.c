@@ -31,37 +31,37 @@
 /**************************************************************************/
 
 /******************************************************************************/
-/* 										  			Include section 																*/
+/* 						Include section 								      */
 /******************************************************************************/
 #include "eInclude.h"
 #include "eOsal.h"
 #include "../TestModule/Inc/eTestModule.h"
 /******************************************************************************/
-/*   			Local Constant and compile switch definition section								*/
+/*   			Local Constant and compile switch definition section		  */
 /******************************************************************************/
 
 /******************************************************************************/
-/*  										Local Type definition section													*/
+/*  				Local Type definition section							  */
 /******************************************************************************/
 
 /******************************************************************************/
-/*  								Local Macro definition section														*/
+/*  				Local Macro definition section							  */
 /******************************************************************************/
 
 /******************************************************************************/
-/*  								Local (static) variable definition section								*/
+/*  		Local (static) variable definition section						   */
 /******************************************************************************/
 
 /******************************************************************************/
-/*  								Local (static) function declaration section								*/
+/*  			Local (static) function declaration section					  */
 /******************************************************************************/
 
 /******************************************************************************/
-/*									Local function definition section 												*/
+/*					Local function definition section 						  */
 /******************************************************************************/
 
 /******************************************************************************/
-/*  						Global function definition section 														*/
+/*  			Global function definition section 							  */
 /******************************************************************************/
 
 /**************************************************************************/
@@ -72,30 +72,28 @@
  @return TODO
  */
 /**************************************************************************/
-Error_t main(Void)
-{
-	Error_t errCode = E_SUCCESS;
-	AppState_t appState = APP_REGISTER_INF_STATE;
-	while (1) {
-		switch (appState)
-		{
-		case APP_REGISTER_INF_STATE:
-			eOsal_Init();
-			eTestModule_Init();
-			eTestModule_Init1();
-			eTestModule_Init1();
-			appState = APP_COMPONENTS_INIT_STATE;
-			break;
-		case APP_COMPONENTS_INIT_STATE:
-			appState = APP_RUNNING_STATE;
-			break;
-		case APP_RUNNING_STATE:
-			while (1) {
-				eOsal_Schedule();
-			}
-			break;
-		default:
-			break;
-		}
-	}
+Error_t main(Void) {
+    Error_t errCode = E_SUCCESS;
+    AppState_t appState = APP_REGISTER_INF_STATE;
+    while (1) {
+        switch (appState) {
+            case APP_REGISTER_INF_STATE:
+                eOsal_Init();
+                eTestModule_Init();
+                eTestModule_Init1();
+                eTestModule_Init1();
+                appState = APP_COMPONENTS_INIT_STATE;
+                break;
+            case APP_COMPONENTS_INIT_STATE:
+                appState = APP_RUNNING_STATE;
+                break;
+            case APP_RUNNING_STATE:
+                while (1) {
+                    eOsal_Schedule();
+                }
+                break;
+            default:
+                break;
+        }
+    }
 }
