@@ -2,7 +2,7 @@
 /*! 
     @file     eTimerHandler.c
     @author   kevin
-		@email		kevin.truong.ds@gmail.com
+        @email		kevin.truong.ds@gmail.com
     @section LICENSE
     Software License Agreement (BSD License)
     Copyright (c) 2015 kevin
@@ -30,9 +30,9 @@
 */
 /**************************************************************************/
 
-/******************************************************************************/ 
+/******************************************************************************/
 /* 										  			Include section 																*/
-/******************************************************************************/ 
+/******************************************************************************/
 #include <malloc.h>
 #include "eInclude.h"
 #include "eTimer.h"
@@ -40,78 +40,72 @@
 #include "eTask.h"
 #include "eOsalTaskHandle.h"
 
-/******************************************************************************/ 
+/******************************************************************************/
 /*   			Local Constant and compile switch definition section								*/
-/******************************************************************************/ 
+/******************************************************************************/
 
 
-/******************************************************************************/ 
+/******************************************************************************/
 /*  										Local Type definition section													*/
-/******************************************************************************/ 
+/******************************************************************************/
 
 
 
-/******************************************************************************/ 
+/******************************************************************************/
 /*  								Local Macro definition section														*/
-/******************************************************************************/ 
+/******************************************************************************/
 
 
 
-/******************************************************************************/ 
+/******************************************************************************/
 /*  								Local (static) variable definition section								*/
-/******************************************************************************/ 
+/******************************************************************************/
 TimerHandlerQueue_t *pTimerHandleQueue;
 TimerHandleQueueInf_st *pthisTimerHandleInf;
 eTask_t *timerTaskScheduler;
 
 
-/******************************************************************************/ 
+/******************************************************************************/
 /*  								Local (static) function declaration section								*/
-/******************************************************************************/ 
+/******************************************************************************/
 
 
 
-/******************************************************************************/ 
+/******************************************************************************/
 /*									Local function definition section 												*/
-/******************************************************************************/ 
-Error_t AddTimer(eTimer_t *newTimer)
-{
-	Error_t errCode = E_SUCCESS;
+/******************************************************************************/
+Error_t AddTimer(eTimer_t *newTimer) {
+    Error_t errCode = E_SUCCESS;
 
-	return errCode;
+    return errCode;
 }
 
 
-Error_t RemoveTimer(UInt32 TimerId)
-{
-	Error_t errCode = E_SUCCESS;
+Error_t RemoveTimer(UInt32 TimerId) {
+    Error_t errCode = E_SUCCESS;
 
-	return errCode;
+    return errCode;
 }
 
 
+Error_t ScheduleHandle() {
+    Error_t errCode = E_SUCCESS;
 
-Error_t ScheduleHandle()
-{
-	Error_t errCode = E_SUCCESS;
-
-	return errCode;
+    return errCode;
 }
 
-Error_t ScheduleSuspend()
-{
-	Error_t errCode = E_SUCCESS;
+Error_t ScheduleSuspend() {
+    Error_t errCode = E_SUCCESS;
 
-	return errCode;
+    return errCode;
 }
 
-Error_t ScheduleResume()
-{
-	Error_t errCode = E_SUCCESS;
+Error_t ScheduleResume() {
+    Error_t errCode = E_SUCCESS;
 
-	return errCode;
+    return errCode;
 }
-/******************************************************************************/ 
+/******************************************************************************/
 /*  						Global function definition section 														*/
 /******************************************************************************/
 
@@ -120,59 +114,48 @@ Error_t ScheduleResume()
     @brief  TODO template for code document  
     @param  TODO
     @param  
-		@return TODO
+    @return TODO
 */
 /**************************************************************************/
-TimerHandleQueueInf_st *eTimerHandlerRegisterInf()
-{
-	if(pthisTimerHandleInf)
-	{
-		return pthisTimerHandleInf;
-	}
-	else
-	{
-		pthisTimerHandleInf = malloc(sizeof(TimerHandleQueueInf_st));
-		if (!pthisTimerHandleInf)
-		{
-			return NULL;
-		}
-		pthisTimerHandleInf->add = AddTimer;
-		pthisTimerHandleInf->remove = RemoveTimer;
+TimerHandleQueueInf_st *eTimerHandlerRegisterInf() {
+    if (pthisTimerHandleInf) {
+        return pthisTimerHandleInf;
+    } else {
+        pthisTimerHandleInf = malloc(sizeof(TimerHandleQueueInf_st));
+        if (!pthisTimerHandleInf) {
+            return NULL;
+        }
+        pthisTimerHandleInf->add = AddTimer;
+        pthisTimerHandleInf->remove = RemoveTimer;
 
-		pTimerHandleQueue = malloc(sizeof(TimerHandlerQueue_t));
-		return pthisTimerHandleInf;
-	}
+        pTimerHandleQueue = malloc(sizeof(TimerHandlerQueue_t));
+        return pthisTimerHandleInf;
+    }
 }
 
 
-Error_t eTimerHandlerInitSchedule()
-{
-	eTaskHandleInf_t *pThisTaskHandler;
-	if(timerTaskScheduler)
-	{
-		return E_SUCCESS;
-	}
-	else
-	{
-		timerTaskScheduler = malloc(sizeof(eTask_t));
-		if (!timerTaskScheduler)
-		{
-			return E_ERR_NULL_MEMALLOCFUNC;
-		}
-		timerTaskScheduler->IsTriggerProcess = False;
-		timerTaskScheduler->TaskId = timerTaskScheduler;
-		timerTaskScheduler->taskHandle = ScheduleHandle;
-		timerTaskScheduler->taskSuspend = ScheduleSuspend;
-		timerTaskScheduler->taskResume = ScheduleResume;
+Error_t eTimerHandlerInitSchedule() {
+    eTaskHandleInf_t *pThisTaskHandler;
+    if (timerTaskScheduler) {
+        return E_SUCCESS;
+    } else {
+        timerTaskScheduler = malloc(sizeof(eTask_t));
+        if (!timerTaskScheduler) {
+            return E_ERR_NULL_MEMALLOCFUNC;
+        }
+        timerTaskScheduler->IsTriggerProcess = False;
+        timerTaskScheduler->TaskId = timerTaskScheduler;
+        timerTaskScheduler->taskHandle = ScheduleHandle;
+        timerTaskScheduler->taskSuspend = ScheduleSuspend;
+        timerTaskScheduler->taskResume = ScheduleResume;
 
-		pThisTaskHandler = eOsalTaskHandle_RegisterInf();
+        pThisTaskHandler = eOsalTaskHandle_RegisterInf();
 
-		if(pThisTaskHandler->Add(timerTaskScheduler)!= E_SUCCESS)
-		{
-			return E_ERROR; // TODO need to add error for can not add new task by eOsalTaskHandler
-		}
-		return E_SUCCESS;
-	}
+        if (pThisTaskHandler->Add(timerTaskScheduler) != E_SUCCESS) {
+            return E_ERROR; // TODO need to add error for can not add new task by eOsalTaskHandler
+        }
+        return E_SUCCESS;
+    }
 }
 
 

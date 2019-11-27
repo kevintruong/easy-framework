@@ -34,6 +34,7 @@
 /* 										  			Include section 																*/
 /******************************************************************************/
 #include <stdio.h>
+#include "eInclude.h"
 #include "../Inc/eTestModule.h"
 #include "eOsalTaskHandle.h"
 
@@ -131,5 +132,5 @@ Error_t eTestModule_Deinit()
 {
 	Error_t errCode = E_SUCCESS;
 
-	return Error_t;
+	return errCode;
 }

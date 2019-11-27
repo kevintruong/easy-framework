@@ -9,12 +9,9 @@ include_directories(eFrameWork/Inc)
 include_directories(Test/TestModule/Inc)
 
 add_executable(eframework
-        CuTest/CuTest.c
-        CuTest/CuTest.h
         eFrameWork/eInclude/eError.h
         eFrameWork/eInclude/eInclude.h
         eFrameWork/eInclude/eTypes.h
-        eFrameWork/eMainTest/eTestMain.c
         eFrameWork/Inc/eOsal.h
         eFrameWork/Inc/eOsalTaskHandle.h
         eFrameWork/Inc/eTask.h
@@ -25,8 +22,7 @@ add_executable(eframework
         eFrameWork/Src/eOsalTaskHandle.c
         eFrameWork/Src/eTask.c
         eFrameWork/Src/eTimerHandler.c
-        Test/TestSuit/eFramworkTest/Src/eFrameworkTestSuit.c
-        Test/TestSuit/eFramworkTest/Src/eFramworkTestMain.c
         Test/eTestMain/eMain.c
         Test/TestModule/Inc/eTestModule.h
-        Test/TestModule/Src/eTestModule.c)
+        Test/TestModule/Src/eTestModule.c
+        )

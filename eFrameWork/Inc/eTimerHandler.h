@@ -31,41 +31,40 @@
 /**************************************************************************/
 #ifndef EFRAMEWORK_INC_ETIMERHANDLER_H_
 #define EFRAMEWORK_INC_ETIMERHANDLER_H_
- 
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
 
 
-/******************************************************************************/ 
+/******************************************************************************/
 /* 										  			Include section 																*/
 /******************************************************************************/
 #include "eInclude.h"
 #include "eTimer.h"
-/******************************************************************************/ 
+/******************************************************************************/
 /* 										  			Type definition section													*/
 /******************************************************************************/
-typedef Error_t (* AddNewTimer)(eTimer_t*);
-typedef Error_t (* RemoveATimer)(UInt32);
+typedef Error_t (*AddNewTimer)(eTimer_t *);
 
-typedef struct TimerHandleQueue_st
-{
-	eTimer_t *pCurTimer;
-	struct TimerHandleQueue_st *pNextTimer;
-}TimerHandlerQueue_t;
+typedef Error_t (*RemoveATimer)(UInt32);
 
-typedef struct TimerHandlerQueue_Inf_st
-{
-	AddNewTimer add;
-	RemoveATimer remove;
-}TimerHandleQueueInf_st;
+typedef struct TimerHandleQueue_st {
+    eTimer_t *pCurTimer;
+    struct TimerHandleQueue_st *pNextTimer;
+} TimerHandlerQueue_t;
 
-/******************************************************************************/ 
+typedef struct TimerHandlerQueue_Inf_st {
+    AddNewTimer add;
+    RemoveATimer remove;
+} TimerHandleQueueInf_st;
+
+/******************************************************************************/
 /* 										  			Macro definition section												*/
 /******************************************************************************/
 
-/******************************************************************************/ 
+/******************************************************************************/
 /* 							  			 Function declaration section													*/
 /******************************************************************************/
 TimerHandleQueueInf_st *eTimerHandlerRegisterInf();

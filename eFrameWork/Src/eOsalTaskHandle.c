@@ -38,6 +38,7 @@
 #include "eTask.h"
 #include <malloc.h>
 #include <stdio.h>
+#include <eOsal.h>
 
 /******************************************************************************/
 /*   			Local Constant and compile switch definition section								*/
@@ -47,7 +48,7 @@
 
 #if defined(DEBUG) && DEBUG > 0
 // #define DEBUG_PRINT(args...) printf("DEBUG: %s:%d:%s(): ",__FILE__, __LINE__, __func__, ##args)
-#define DEBUG_PRINT 						printf
+#define DEBUG_PRINT                        printf
 #else
 #define DEBUG_PRINT(fmt, args...) /* Don't do anything in release builds */
 #endif
@@ -62,8 +63,8 @@
 /******************************************************************************/
 /*  								Local (static) variable definition section								*/
 /******************************************************************************/
-TodoTaskList_t* eTodoTaskList; /*<<<! Container hold all task element */
-eTaskHandleInf_t * taskHandleInf; /*<<<! return interface to access container */
+TodoTaskList_t *eTodoTaskList; /*<<<! Container hold all task element */
+eTaskHandleInf_t *taskHandleInf; /*<<<! return interface to access container */
 
 /******************************************************************************/
 /*  								Local (static) function declaration section								*/
@@ -76,7 +77,7 @@ eTaskHandleInf_t * taskHandleInf; /*<<<! return interface to access container */
  @return TODO
  */
 /**************************************************************************/
-Error_t eOsalTaskHandle_Add(eTask_t* newTask);
+Error_t eOsalTaskHandle_Add(eTask_t *newTask);
 /**************************************************************************/
 /*!
  @brief  TODO template for code document
@@ -112,31 +113,29 @@ Error_t eOsalTaskHandle_Sort(Void);
  @return TODO
  */
 /**************************************************************************/
-eTaskHandleInf_t *eOsalTaskHandle_RegisterInf(Void)
-{
-	if (taskHandleInf) {
-		return taskHandleInf;
-	}
-	else {
-		if (!eTodoTaskList) {
-			eTodoTaskList = malloc(sizeof(TodoTaskList_t));
-			if (!eTodoTaskList) {
-				DEBUG_PRINT("Can not allocate memory for TaskListContainer");
-				return NULL;
-			}
-		}
+eTaskHandleInf_t *eOsalTaskHandle_RegisterInf(Void) {
+    if (taskHandleInf) {
+        return taskHandleInf;
+    } else {
+        if (!eTodoTaskList) {
+            eTodoTaskList = malloc(sizeof(TodoTaskList_t));
+            if (!eTodoTaskList) {
+                DEBUG_PRINT("Can not allocate memory for TaskListContainer");
+                return NULL;
+            }
+        }
 
-		taskHandleInf = malloc(sizeof(eTaskHandleInf_t));
-		if (NULL == eTodoTaskList) {
-			DEBUG_PRINT("Cannot allocate memory for TaskHandle Interface");
-			return NULL;
-		}
+        taskHandleInf = malloc(sizeof(eTaskHandleInf_t));
+        if (NULL == eTodoTaskList) {
+            DEBUG_PRINT("Cannot allocate memory for TaskHandle Interface");
+            return NULL;
+        }
 
-		taskHandleInf->Add = eOsalTaskHandle_Add;
-		taskHandleInf->Remove = eOsalTaskHandle_Remove;
-		taskHandleInf->Sort = eOsalTaskHandle_Sort;
-		return taskHandleInf;
-	}
+        taskHandleInf->Add = eOsalTaskHandle_Add;
+        taskHandleInf->Remove = eOsalTaskHandle_Remove;
+        taskHandleInf->Sort = eOsalTaskHandle_Sort;
+        return taskHandleInf;
+    }
 }
 
 /**************************************************************************/
@@ -147,36 +146,33 @@ eTaskHandleInf_t *eOsalTaskHandle_RegisterInf(Void)
  @return TODO
  */
 /**************************************************************************/
-Error_t eOsalTaskHandle_Add(eTask_t* newTask)
-{
-	Error_t errorCode = E_SUCCESS;
-	TodoTaskList_t *cur = eTodoTaskList;
+Error_t eOsalTaskHandle_Add(eTask_t *newTask) {
+    Error_t errorCode = E_SUCCESS;
+    TodoTaskList_t *cur = eTodoTaskList;
 
-	if (!cur)
-	{
-		eOsal_Init();
-	}
-	if (!cur->curTask)
-	{
-		cur->curTask = newTask;
-		cur->pNextTask = NULL;
-		return E_SUCCESS;
-	}
+    if (!cur) {
+        eOsal_Init();
+    }
+    if (!cur->curTask) {
+        cur->curTask = newTask;
+        cur->pNextTask = NULL;
+        return E_SUCCESS;
+    }
 
-	while (cur->pNextTask != NULL) {
-		cur = cur->pNextTask;
-	}
-	cur->pNextTask = malloc(sizeof(TodoTaskList_t));
-	if (!cur->pNextTask) {
-		return E_ERR_NULL_MEMALLOCFUNC;
-	}
-	cur->pNextTask->curTask = newTask;
-	cur->pNextTask->pNextTask = NULL;
+    while (cur->pNextTask != NULL) {
+        cur = cur->pNextTask;
+    }
+    cur->pNextTask = malloc(sizeof(TodoTaskList_t));
+    if (!cur->pNextTask) {
+        return E_ERR_NULL_MEMALLOCFUNC;
+    }
+    cur->pNextTask->curTask = newTask;
+    cur->pNextTask->pNextTask = NULL;
 
-	//TODO implement add new task to task list
-	DEBUG_PRINT("Add new Task with TaskID: %8x\n",
-							newTask->TaskId);
-	return errorCode;
+    //TODO implement add new task to task list
+    DEBUG_PRINT("Add new Task with TaskID: %8x\n",
+                newTask->TaskId);
+    return errorCode;
 }
 
 /**************************************************************************/
@@ -187,32 +183,27 @@ Error_t eOsalTaskHandle_Add(eTask_t* newTask)
  @return TODO
  */
 /**************************************************************************/
-Error_t eOsalTaskHandle_Remove(UInt32 taskId)
-{
-	Error_t errorCode = E_SUCCESS;
-	TodoTaskList_t *current = eTodoTaskList;
+Error_t eOsalTaskHandle_Remove(UInt32 taskId) {
+    Error_t errorCode = E_SUCCESS;
+    TodoTaskList_t *current = eTodoTaskList;
 
-	if (!current->curTask) {
-		return E_ERR_NULL_MEMALLOCFUNC;
-	}
-	do
-	{
-		if (current->pNextTask->curTask->TaskId == taskId)
-		{
-			TodoTaskList_t *tmp = current->pNextTask->pNextTask;
-			realloc(current->pNextTask,0x0);
-			current->pNextTask = tmp;
-			return errorCode;
-		}
-		else
-		{
-			current = current->pNextTask;
-			continue;
-		}
-	}while(current->pNextTask->curTask);
+    if (!current->curTask) {
+        return E_ERR_NULL_MEMALLOCFUNC;
+    }
+    do {
+        if (current->pNextTask->curTask->TaskId == taskId) {
+            TodoTaskList_t *tmp = current->pNextTask->pNextTask;
+            realloc(current->pNextTask, 0x0);
+            current->pNextTask = tmp;
+            return errorCode;
+        } else {
+            current = current->pNextTask;
+            continue;
+        }
+    } while (current->pNextTask->curTask);
 
-	errorCode = E_ERROR;
-	return errorCode;
+    errorCode = E_ERROR;
+    return errorCode;
 }
 
 /**************************************************************************/
@@ -223,17 +214,15 @@ Error_t eOsalTaskHandle_Remove(UInt32 taskId)
  @return TODO
  */
 /**************************************************************************/
-Error_t eOsalTaskHandle_Sort(Void)
-{
-	Error_t errorCode = E_SUCCESS;
-	//TODO implement sort Task
-	return errorCode;
+Error_t eOsalTaskHandle_Sort(Void) {
+    Error_t errorCode = E_SUCCESS;
+    //TODO implement sort Task
+    return errorCode;
 }
 
-TodoTaskList_t *eOsalTaskHandle_GetTasksList()
-{
-	if (!eTodoTaskList) {
-		eTodoTaskList = malloc(sizeof(TodoTaskList_t));
-	}
-	return eTodoTaskList;
+TodoTaskList_t *eOsalTaskHandle_GetTasksList() {
+    if (!eTodoTaskList) {
+        eTodoTaskList = malloc(sizeof(TodoTaskList_t));
+    }
+    return eTodoTaskList;
 }

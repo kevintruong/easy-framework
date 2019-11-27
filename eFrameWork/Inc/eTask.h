@@ -30,48 +30,48 @@
 /**************************************************************************/
 #ifndef INC_ETASK_H_
 #define INC_ETASK_H_
- 
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
 
-/******************************************************************************/ 
+/******************************************************************************/
 /* 										  			Include section 																*/
 /******************************************************************************/
 #include "eInclude.h"
- 
-/******************************************************************************/ 
+
+/******************************************************************************/
 /* 										  			Type definition section													*/
 /******************************************************************************/
 
-typedef Error_t (*TaskHandleFn)(Void *);				/*<<<! Function pointer point to the method process the task*/
-typedef Error_t (*TaskSuspendFn)(Void *);				/*<<<! Function pointer point to the method process the task*/
-typedef Error_t (*TaskResumeFn)(Void *);				/*<<<! Function pointer point to the method process the task*/
+typedef Error_t (*TaskHandleFn)(Void *);                /*<<<! Function pointer point to the method process the task*/
+typedef Error_t (*TaskSuspendFn)(Void *);                /*<<<! Function pointer point to the method process the task*/
+typedef Error_t (*TaskResumeFn)(Void *);                /*<<<! Function pointer point to the method process the task*/
 
 
 
 typedef enum TaskPrority_en {
-	LOW_LEVEL,
-	NORMAL_LEVEL,
-	HIGH_LEVEL,
-	HIGHEST_LEVEL
-}TaskPriority_t;
+    LOW_LEVEL,
+    NORMAL_LEVEL,
+    HIGH_LEVEL,
+    HIGHEST_LEVEL
+} TaskPriority_t;
 
 typedef struct eTask_st {
-	UInt32 TaskId;					/*<<<! TaskId of a task */
-	TaskPriority_t TaskPriority;	/*<<<! Priority of task */
-	Bool IsTriggerProcess;			/*<<<! Flag to know the task is trigger to process or not */
-	TaskHandleFn taskHandle;		/*<<<! Function pointer point to Function process a task  */
-	TaskResumeFn taskResume;		/*<<<! Resume current task */
-	TaskSuspendFn taskSuspend;		/*<<<! suspend the task.  */
-}eTask_t;
+    UInt32 TaskId;                    /*<<<! TaskId of a task */
+    TaskPriority_t TaskPriority;    /*<<<! Priority of task */
+    Bool IsTriggerProcess;            /*<<<! Flag to know the task is trigger to process or not */
+    TaskHandleFn taskHandle;        /*<<<! Function pointer point to Function process a task  */
+    TaskResumeFn taskResume;        /*<<<! Resume current task */
+    TaskSuspendFn taskSuspend;        /*<<<! suspend the task.  */
+} eTask_t;
 
-/******************************************************************************/ 
+/******************************************************************************/
 /* 										  			Macro definition section												*/
 /******************************************************************************/
 
-/******************************************************************************/ 
+/******************************************************************************/
 /* 							  			 Function declaration section													*/
 /******************************************************************************/
 

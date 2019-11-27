@@ -31,42 +31,43 @@
 /**************************************************************************/
 #ifndef INC_EOSALTASKHANDLE_H_
 #define INC_EOSALTASKHANDLE_H_
- 
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
+
 #include "eTask.h"
 
-/******************************************************************************/ 
+/******************************************************************************/
 /* 										  			Include section 																*/
 /******************************************************************************/
- 
-/******************************************************************************/ 
+
+/******************************************************************************/
 /* 										  			Type definition section													*/
 /******************************************************************************/
-typedef Error_t (* AddNewTask)(eTask_t*);
-typedef Error_t (* RemoveTask)(UInt32 taskId);
-typedef Error_t (* SortTask)(Void);
+typedef Error_t (*AddNewTask)(eTask_t *);
 
-typedef struct eTaskHandleInf_st
-{
-	AddNewTask Add;
-	RemoveTask Remove;
-	SortTask Sort;
-}eTaskHandleInf_t;
+typedef Error_t (*RemoveTask)(UInt32 taskId);
 
-typedef struct TodoTaskList_st
-{
-	struct eTask_st *curTask;			/*<<<! Pointer to task data  */
-	struct TodoTaskList_st* pNextTask;	/*<<<! Pointer to next element of taskList  */
-}TodoTaskList_t;
+typedef Error_t (*SortTask)(Void);
 
-/******************************************************************************/ 
+typedef struct eTaskHandleInf_st {
+    AddNewTask Add;
+    RemoveTask Remove;
+    SortTask Sort;
+} eTaskHandleInf_t;
+
+typedef struct TodoTaskList_st {
+    struct eTask_st *curTask;            /*<<<! Pointer to task data  */
+    struct TodoTaskList_st *pNextTask;    /*<<<! Pointer to next element of taskList  */
+} TodoTaskList_t;
+
+/******************************************************************************/
 /* 										  			Macro definition section												*/
 /******************************************************************************/
 
-/******************************************************************************/ 
+/******************************************************************************/
 /* 							  			 Function declaration section													*/
 /******************************************************************************/
 /**************************************************************************/
@@ -80,6 +81,7 @@ typedef struct TodoTaskList_st
 */
 /**************************************************************************/
 eTaskHandleInf_t *eOsalTaskHandle_RegisterInf(Void);
+
 TodoTaskList_t *eOsalTaskHandle_GetTasksList();
 
 

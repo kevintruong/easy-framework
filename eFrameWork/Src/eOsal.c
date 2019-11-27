@@ -31,13 +31,13 @@
 /**************************************************************************/
 
 /******************************************************************************/
-/* 										  			Include section 																*/
+/*                  Include section                                            */
 /******************************************************************************/
+#include <stdio.h>
 #include "eInclude.h"
 #include <eOsalTaskHandle.h>
 
 #ifdef DEBUG
-#include <stdio.h>
 #define DEBUG_PRINT				printf
 #else
 #define DEBUG_PRINT
@@ -64,7 +64,7 @@ TodoTaskList_t *pTaskList;
 /******************************************************************************/
 /*  								Local (static) function declaration section								*/
 /******************************************************************************/
-
+Error_t eOsal_EnterPowerDownMode(Void);
 /******************************************************************************/
 /*									Local function definition section 												*/
 /******************************************************************************/
@@ -82,47 +82,44 @@ TodoTaskList_t *pTaskList;
  Otherwise return error
  */
 /******************************************************************************/
-Error_t eOsal_Init(Void)
-{
-	Error_t errorCode = E_SUCCESS;
+Error_t eOsal_Init(Void) {
+    Error_t errorCode = E_SUCCESS;
 
-	thisTaskHandle = eOsalTaskHandle_RegisterInf();
-	if (!thisTaskHandle) {
-		errorCode = E_ERR_NULL_MEMALLOCFUNC;
-		return errorCode;
-	}
+    thisTaskHandle = eOsalTaskHandle_RegisterInf();
+    if (!thisTaskHandle) {
+        errorCode = E_ERR_NULL_MEMALLOCFUNC;
+        return errorCode;
+    }
 
-	pTaskList = eOsalTaskHandle_GetTasksList();
-	if (!pTaskList) {
-		errorCode = E_ERR_NULL_MEMALLOCFUNC;
-		return errorCode;
-	}
+    pTaskList = eOsalTaskHandle_GetTasksList();
+    if (!pTaskList) {
+        errorCode = E_ERR_NULL_MEMALLOCFUNC;
+        return errorCode;
+    }
 
-	return errorCode;
+    return errorCode;
 }
 
-Void eOsal_Schedule(Void)
-{
-	TodoTaskList_t *curr = pTaskList;
+Void eOsal_Schedule(Void) {
+    TodoTaskList_t *curr = pTaskList;
 
-	do {
-		if (curr->curTask) {
-			if (curr->curTask->IsTriggerProcess) {
-				curr->curTask->taskHandle(NULL);
-			}
-		}
-		curr = curr->pNextTask;
-	}
-	while (curr);
-	eOsal_EnterPowerDownMode(); // eOsal will enter power down mode when complete one check task
-	return;
+    do {
+        if (curr->curTask) {
+            if (curr->curTask->IsTriggerProcess) {
+                curr->curTask->taskHandle(NULL);
+            }
+        }
+        curr = curr->pNextTask;
+    } while (curr);
+    eOsal_EnterPowerDownMode(); // eOsal will enter power down mode when complete one check task
+    return;
 }
 
-Error_t eOsal_EnterPowerDownMode(Void)
-{
-	Error_t errCode = E_SUCCESS;
-	DEBUG_PRINT("eOsal enter power down\n");
-	sleep(4);
-	return errCode;
+
+Error_t eOsal_EnterPowerDownMode(Void) {
+    Error_t errCode = E_SUCCESS;
+    DEBUG_PRINT("eOsal enter power down\n");
+    sleep(4);
+    return errCode;
 }
 
