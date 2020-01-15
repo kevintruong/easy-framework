@@ -2,7 +2,7 @@
 /*! 
     @file     eTimer.h
     @author   kevin
-		@email		kevin.truong.ds@gmail.com
+    @email    kevin.truong.ds@gmail.com
     @section LICENSE
     Software License Agreement (BSD License)
     Copyright (c) 2015 kevin
@@ -40,11 +40,11 @@ extern "C"
 #include "eInclude.h"
 
 /******************************************************************************/
-/* 										  			Include section 																*/
+/*                            Include section                                 */
 /******************************************************************************/
 
 /******************************************************************************/
-/* 										  			Type definition section													*/
+/*                            Type definition section                         */
 /******************************************************************************/
 typedef enum TypeTimer_en {
     PERIODIC_TIMER,
@@ -57,11 +57,11 @@ typedef struct eTimer_st {
     TypeTimer_t typeTimer;
 } eTimer_t;
 /******************************************************************************/
-/* 										  			Macro definition section												*/
+/*                            Macro definition section                        */
 /******************************************************************************/
 
 /******************************************************************************/
-/* 							  			 Function declaration section													*/
+/*                       Function declaration section                         */
 /******************************************************************************/
 
 

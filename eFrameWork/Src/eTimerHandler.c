@@ -2,7 +2,7 @@
 /*! 
     @file     eTimerHandler.c
     @author   kevin
-        @email		kevin.truong.ds@gmail.com
+        @email    kevin.truong.ds@gmail.com
     @section LICENSE
     Software License Agreement (BSD License)
     Copyright (c) 2015 kevin
@@ -31,7 +31,7 @@
 /**************************************************************************/
 
 /******************************************************************************/
-/* 										  			Include section 																*/
+/*                            Include section                                 */
 /******************************************************************************/
 #include <malloc.h>
 #include "eInclude.h"
@@ -41,24 +41,24 @@
 #include "eOsalTaskHandle.h"
 
 /******************************************************************************/
-/*   			Local Constant and compile switch definition section								*/
+/*        Local Constant and compile switch definition section                */
 /******************************************************************************/
 
 
 /******************************************************************************/
-/*  										Local Type definition section													*/
-/******************************************************************************/
-
-
-
-/******************************************************************************/
-/*  								Local Macro definition section														*/
+/*                      Local Type definition section                         */
 /******************************************************************************/
 
 
 
 /******************************************************************************/
-/*  								Local (static) variable definition section								*/
+/*                  Local Macro definition section                            */
+/******************************************************************************/
+
+
+
+/******************************************************************************/
+/*                  Local (static) variable definition section                */
 /******************************************************************************/
 TimerHandlerQueue_t *pTimerHandleQueue;
 TimerHandleQueueInf_st *pthisTimerHandleInf;
@@ -66,13 +66,13 @@ eTask_t *timerTaskScheduler;
 
 
 /******************************************************************************/
-/*  								Local (static) function declaration section								*/
+/*                  Local (static) function declaration section               */
 /******************************************************************************/
 
 
 
 /******************************************************************************/
-/*									Local function definition section 												*/
+/*                  Local function definition section                         */
 /******************************************************************************/
 Error_t AddTimer(eTimer_t *newTimer) {
     Error_t errCode = E_SUCCESS;
@@ -106,7 +106,7 @@ Error_t ScheduleResume() {
     return errCode;
 }
 /******************************************************************************/
-/*  						Global function definition section 														*/
+/*              Global function definition section                            */
 /******************************************************************************/
 
 /**************************************************************************/

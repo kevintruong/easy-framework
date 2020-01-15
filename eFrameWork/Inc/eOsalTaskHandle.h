@@ -2,7 +2,7 @@
 /*! 
     @file     eOsalHandleTask.h
     @author   kevin
-		@email		kevin.truong.ds@gmail.com
+    @email    kevin.truong.ds@gmail.com
     @section LICENSE
     Software License Agreement (BSD License)
     Copyright (c) 2015 kevin
@@ -40,11 +40,11 @@ extern "C"
 #include "eTask.h"
 
 /******************************************************************************/
-/* 										  			Include section 																*/
+/*                            Include section                                 */
 /******************************************************************************/
 
 /******************************************************************************/
-/* 										  			Type definition section													*/
+/*                            Type definition section                         */
 /******************************************************************************/
 typedef Error_t (*AddNewTask)(eTask_t *);
 
@@ -64,20 +64,20 @@ typedef struct TodoTaskList_st {
 } TodoTaskList_t;
 
 /******************************************************************************/
-/* 										  			Macro definition section												*/
+/*                            Macro definition section                        */
 /******************************************************************************/
 
 /******************************************************************************/
-/* 							  			 Function declaration section													*/
+/*                       Function declaration section                         */
 /******************************************************************************/
 /**************************************************************************/
 /*!
- *  @fn	eTaskHandle_t *eOsalTaskHandle_Init(Void);
-    @brief	Initial TaskHandle
+ *  @fn eTaskHandle_t *eOsalTaskHandle_Init(Void);
+    @brief  Initial TaskHandle
 
     @param  None
 
-	@return TODO
+  @return TODO
 */
 /**************************************************************************/
 eTaskHandleInf_t *eOsalTaskHandle_RegisterInf(Void);

@@ -36,14 +36,14 @@ extern "C"
 {
 #endif
 /******************************************************************************/
-/* 										  			Include section 																*/
+/*                            Include section                                 */
 /******************************************************************************/
 #include "eInclude.h"
 #include "eOsalTaskHandle.h"
 #include "eTimerHandler.h"
 
 /******************************************************************************/
-/* 										  			Type definition section													*/
+/*                            Type definition section                         */
 /******************************************************************************/
 typedef enum AppState_en {
     APP_REGISTER_INF_STATE,
@@ -51,19 +51,19 @@ typedef enum AppState_en {
     APP_RUNNING_STATE
 } AppState_t;
 /******************************************************************************/
-/* 										  			Macro definition section												*/
+/*                            Macro definition section                        */
 /******************************************************************************/
 
 /******************************************************************************/
-/* 							  			 Function declaration section													*/
+/*                       Function declaration section                         */
 /******************************************************************************/
 /******************************************************************************/
 /*!
     @brief  TODO template for code document
 
     @param  None
-		@return SUCCESS if none happen error
-						Otherwise return error
+    @return SUCCESS if none happen error
+            Otherwise return error
 */
 /******************************************************************************/
 Error_t eOsal_Init(Void);
@@ -72,7 +72,7 @@ Error_t eOsal_Init(Void);
     @brief  Osal will polling what task is needded to process
 
     @param  None
-		@return None
+    @return None
 */
 /******************************************************************************/
 Void eOsal_Schedule(Void);

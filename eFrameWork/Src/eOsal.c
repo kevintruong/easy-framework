@@ -2,7 +2,7 @@
 /*! 
  @file     eOsal.c
  @author   kevin
- @email		kevin.truong.ds@gmail.com
+ @email   kevin.truong.ds@gmail.com
  @section LICENSE
  Software License Agreement (BSD License)
  Copyright (c) 2015 kevin
@@ -38,39 +38,39 @@
 #include <eOsalTaskHandle.h>
 
 #ifdef DEBUG
-#define DEBUG_PRINT				printf
+#define DEBUG_PRINT       printf
 #else
 #define DEBUG_PRINT
 #endif
 
 /******************************************************************************/
-/*   			Local Constant and compile switch definition section								*/
+/*        Local Constant and compile switch definition section                */
 /******************************************************************************/
 
 /******************************************************************************/
-/*  										Local Type definition section													*/
+/*                      Local Type definition section                         */
 /******************************************************************************/
 
 /******************************************************************************/
-/*  								Local Macro definition section														*/
+/*                  Local Macro definition section                            */
 /******************************************************************************/
 
 /******************************************************************************/
-/*  								Local (static) variable definition section								*/
+/*                  Local (static) variable definition section                */
 /******************************************************************************/
 eTaskHandleInf_t *thisTaskHandle;
 TodoTaskList_t *pTaskList;
 
 /******************************************************************************/
-/*  								Local (static) function declaration section								*/
+/*                  Local (static) function declaration section               */
 /******************************************************************************/
 Error_t eOsal_EnterPowerDownMode(Void);
 /******************************************************************************/
-/*									Local function definition section 												*/
+/*                  Local function definition section                         */
 /******************************************************************************/
 
 /******************************************************************************/
-/*  						Global function definition section 														*/
+/*              Global function definition section                            */
 /******************************************************************************/
 
 /******************************************************************************/
@@ -119,7 +119,6 @@ Void eOsal_Schedule(Void) {
 Error_t eOsal_EnterPowerDownMode(Void) {
     Error_t errCode = E_SUCCESS;
     DEBUG_PRINT("eOsal enter power down\n");
-    sleep(4);
     return errCode;
 }
 

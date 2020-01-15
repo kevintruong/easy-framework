@@ -2,7 +2,7 @@
 /*! 
     @file     eTestModule.h
     @author   kevin
-		@email		kevin.truong.ds@gmail.com
+    @email    kevin.truong.ds@gmail.com
     @section LICENSE
     Software License Agreement (BSD License)
     Copyright (c) 2015 kevin
@@ -39,19 +39,19 @@ extern "C"
 
 
 /******************************************************************************/ 
-/* 										  			Include section 																*/
+/*                            Include section                                 */
 /******************************************************************************/
 #include "eTask.h"
 /******************************************************************************/ 
-/* 										  			Type definition section													*/
+/*                            Type definition section                         */
 /******************************************************************************/
 
 /******************************************************************************/ 
-/* 										  			Macro definition section												*/
+/*                            Macro definition section                        */
 /******************************************************************************/
 
 /******************************************************************************/ 
-/* 							  			 Function declaration section													*/
+/*                       Function declaration section                         */
 /******************************************************************************/
 Error_t eTestModule_Init();
 Error_t eTestModule_Init1();

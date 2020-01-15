@@ -2,7 +2,7 @@
 /*! 
  @file     eMain.c
  @author   kevin
- @email		kevin.truong.ds@gmail.com
+ @email   kevin.truong.ds@gmail.com
  @section LICENSE
  Software License Agreement (BSD License)
  Copyright (c) 2015 kevin
@@ -31,37 +31,37 @@
 /**************************************************************************/
 
 /******************************************************************************/
-/* 						Include section 								      */
+/*            Include section                       */
 /******************************************************************************/
 #include "eInclude.h"
 #include "eOsal.h"
 #include "../TestModule/Inc/eTestModule.h"
 /******************************************************************************/
-/*   			Local Constant and compile switch definition section		  */
+/*        Local Constant and compile switch definition section      */
 /******************************************************************************/
 
 /******************************************************************************/
-/*  				Local Type definition section							  */
+/*          Local Type definition section               */
 /******************************************************************************/
 
 /******************************************************************************/
-/*  				Local Macro definition section							  */
+/*          Local Macro definition section                */
 /******************************************************************************/
 
 /******************************************************************************/
-/*  		Local (static) variable definition section						   */
+/*      Local (static) variable definition section               */
 /******************************************************************************/
 
 /******************************************************************************/
-/*  			Local (static) function declaration section					  */
+/*        Local (static) function declaration section           */
 /******************************************************************************/
 
 /******************************************************************************/
-/*					Local function definition section 						  */
+/*          Local function definition section               */
 /******************************************************************************/
 
 /******************************************************************************/
-/*  			Global function definition section 							  */
+/*        Global function definition section                */
 /******************************************************************************/
 
 /**************************************************************************/

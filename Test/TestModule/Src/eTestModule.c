@@ -2,7 +2,7 @@
 /*! 
  @file     eTestModule.c
  @author   kevin
- @email		kevin.truong.ds@gmail.com
+ @email   kevin.truong.ds@gmail.com
  @section LICENSE
  Software License Agreement (BSD License)
  Copyright (c) 2015 kevin
@@ -31,7 +31,7 @@
 /**************************************************************************/
 
 /******************************************************************************/
-/* 										  			Include section 																*/
+/*                            Include section                                 */
 /******************************************************************************/
 #include <stdio.h>
 #include "eInclude.h"
@@ -39,49 +39,49 @@
 #include "eOsalTaskHandle.h"
 
 /******************************************************************************/
-/*   			Local Constant and compile switch definition section								*/
+/*        Local Constant and compile switch definition section                */
 /******************************************************************************/
 
 /******************************************************************************/
-/*  										Local Type definition section													*/
+/*                      Local Type definition section                         */
 /******************************************************************************/
 
 /******************************************************************************/
-/*  								Local Macro definition section														*/
+/*                  Local Macro definition section                            */
 /******************************************************************************/
 
 /******************************************************************************/
-/*  								Local (static) variable definition section								*/
+/*                  Local (static) variable definition section                */
 /******************************************************************************/
 eTask_t *pTestModuleTask;
 /******************************************************************************/
-/*  								Local (static) function declaration section								*/
+/*                  Local (static) function declaration section               */
 /******************************************************************************/
 Void eTestModule_TaskProcessing(Void *Object);
 Error_t TestModuleTaskConfigure();
 /******************************************************************************/
-/*									Local function definition section 												*/
+/*                  Local function definition section                         */
 /******************************************************************************/
 Error_t TestModuleTaskConfigure(){
-	if(!pTestModuleTask)
-	{
-		return E_ERR_NULL_MEMALLOCFUNC;
-	}
-	pTestModuleTask->IsTriggerProcess = False;
-	pTestModuleTask->TaskId = pTestModuleTask;
-	pTestModuleTask->taskHandle = eTestModule_TaskProcessing;
-	pTestModuleTask->taskSuspend = NULL;
-	pTestModuleTask->taskResume = NULL;
-	pTestModuleTask->TaskPriority = NORMAL_LEVEL;
-	return E_SUCCESS;
+  if(!pTestModuleTask)
+  {
+    return E_ERR_NULL_MEMALLOCFUNC;
+  }
+  pTestModuleTask->IsTriggerProcess = False;
+  pTestModuleTask->TaskId = pTestModuleTask;
+  pTestModuleTask->taskHandle = eTestModule_TaskProcessing;
+  pTestModuleTask->taskSuspend = NULL;
+  pTestModuleTask->taskResume = NULL;
+  pTestModuleTask->TaskPriority = NORMAL_LEVEL;
+  return E_SUCCESS;
 }
 Void eTestModule_TaskProcessing(Void *Object)
 {
-	printf("Hello, I'm Test Module Processing \n");
-	return;
+  printf("Hello, I'm Test Module Processing \n");
+  return;
 }
 /******************************************************************************/
-/*  						Global function definition section 														*/
+/*              Global function definition section                            */
 /******************************************************************************/
 
 /**************************************************************************/
@@ -94,43 +94,43 @@ Void eTestModule_TaskProcessing(Void *Object)
 /**************************************************************************/
 Error_t eTestModule_Init()
 {
-	Error_t errCode = E_SUCCESS;
-	pTestModuleTask = malloc(sizeof(eTask_t));
-	if (!pTestModuleTask)
-	{
-		return errCode = E_ERR_NULL_MEMALLOCFUNC;
-	}
-	TestModuleTaskConfigure();
+  Error_t errCode = E_SUCCESS;
+  pTestModuleTask = malloc(sizeof(eTask_t));
+  if (!pTestModuleTask)
+  {
+    return errCode = E_ERR_NULL_MEMALLOCFUNC;
+  }
+  TestModuleTaskConfigure();
 
-	eTaskHandleInf_t *pTaskHandlerInf = eOsalTaskHandle_RegisterInf();
+  eTaskHandleInf_t *pTaskHandlerInf = eOsalTaskHandle_RegisterInf();
 
-	pTaskHandlerInf->Add(pTestModuleTask);
-	return errCode;
+  pTaskHandlerInf->Add(pTestModuleTask);
+  return errCode;
 }
 
 
 Error_t eTestModule_Init1()
 {
-	Error_t errCode = E_SUCCESS;
-	eTask_t *ptestModule1;
-	ptestModule1 = malloc(sizeof(eTask_t));
-	if (!pTestModuleTask)
-	{
-		return errCode = E_ERR_NULL_MEMALLOCFUNC;
-	}
-	ptestModule1->IsTriggerProcess = True;
-	ptestModule1->taskHandle = eTestModule_TaskProcessing;
-	ptestModule1->TaskId = ptestModule1;
+  Error_t errCode = E_SUCCESS;
+  eTask_t *ptestModule1;
+  ptestModule1 = malloc(sizeof(eTask_t));
+  if (!pTestModuleTask)
+  {
+    return errCode = E_ERR_NULL_MEMALLOCFUNC;
+  }
+  ptestModule1->IsTriggerProcess = True;
+  ptestModule1->taskHandle = eTestModule_TaskProcessing;
+  ptestModule1->TaskId = ptestModule1;
 
-	eTaskHandleInf_t *pTaskHandlerInf = eOsalTaskHandle_RegisterInf();
+  eTaskHandleInf_t *pTaskHandlerInf = eOsalTaskHandle_RegisterInf();
 
-	pTaskHandlerInf->Add(ptestModule1);
-	return errCode;
+  pTaskHandlerInf->Add(ptestModule1);
+  return errCode;
 }
 
 Error_t eTestModule_Deinit()
 {
-	Error_t errCode = E_SUCCESS;
+  Error_t errCode = E_SUCCESS;
 
-	return errCode;
+  return errCode;
 }

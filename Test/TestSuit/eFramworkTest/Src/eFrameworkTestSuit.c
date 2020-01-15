@@ -2,7 +2,7 @@
 /*! 
  @file     eFrameworkTestSuit.c
  @author   kevin
- @email		kevin.truong.ds@gmail.com
+ @email   kevin.truong.ds@gmail.com
  @section LICENSE
  Software License Agreement (BSD License)
  Copyright (c) 2015 kevin
@@ -31,59 +31,59 @@
 /**************************************************************************/
 
 /******************************************************************************/
-/* 										  			Include section 																*/
+/*                            Include section                                 */
 /******************************************************************************/
 #include "CuTest.h"
 #include "eOsal.h"
 
 
 /******************************************************************************/
-/*   			Local Constant and compile switch definition section								*/
+/*        Local Constant and compile switch definition section                */
 /******************************************************************************/
 
 /******************************************************************************/
-/*  				Local Type definition section							  */
+/*          Local Type definition section               */
 /******************************************************************************/
 
 /******************************************************************************/
-/*  								Local Macro definition section														*/
+/*                  Local Macro definition section                            */
 /******************************************************************************/
 
 /******************************************************************************/
-/*  								Local (static) variable definition section								*/
+/*                  Local (static) variable definition section                */
 /******************************************************************************/
 
 /******************************************************************************/
-/*  								Local (static) function declaration section								*/
+/*                  Local (static) function declaration section               */
 /******************************************************************************/
 
 /******************************************************************************/
-/*									Local function definition section 												*/
+/*                  Local function definition section                         */
 /******************************************************************************/
 
 /******************************************************************************/
-/*  						Global function definition section 														*/
+/*              Global function definition section                            */
 /******************************************************************************/
 #define DURATION_TEST_TIME 10000
 void TestReturnTaskHandleInf(CuTest *tc)
 {
-	UInt32 count = 0;
-	UInt32 false = 0;
-	while (count < DURATION_TEST_TIME) {
-		count++;
-		eTaskHandleInf_t *thisTaskHandle = eOsalTaskHandle_RegisterInf();
-		if (thisTaskHandle == NULL) {
-			false++;
-			continue;
-		}
-	}
-	CuAssertIntEquals(tc, 0, false);
+  UInt32 count = 0;
+  UInt32 false = 0;
+  while (count < DURATION_TEST_TIME) {
+    count++;
+    eTaskHandleInf_t *thisTaskHandle = eOsalTaskHandle_RegisterInf();
+    if (thisTaskHandle == NULL) {
+      false++;
+      continue;
+    }
+  }
+  CuAssertIntEquals(tc, 0, false);
 }
 
 void Test_eOsalInit(CuTest *tc)
 {
-	Error_t errCode = eOsal_Init();
-	CuAssertIntEquals_Msg(tc, "eOsalInit Failed", E_SUCCESS, errCode);
+  Error_t errCode = eOsal_Init();
+  CuAssertIntEquals_Msg(tc, "eOsalInit Failed", E_SUCCESS, errCode);
 }
 /**************************************************************************/
 /*! 
@@ -95,9 +95,9 @@ void Test_eOsalInit(CuTest *tc)
 /**************************************************************************/
 CuSuite* eFramework_GetTestSuite()
 {
-	CuSuite* suite = CuSuiteNew();
+  CuSuite* suite = CuSuiteNew();
 
-	SUITE_ADD_TEST(	suite, TestReturnTaskHandleInf);
-	SUITE_ADD_TEST(	suite, Test_eOsalInit);
-	return suite;
+  SUITE_ADD_TEST( suite, TestReturnTaskHandleInf);
+  SUITE_ADD_TEST( suite, Test_eOsalInit);
+  return suite;
 }

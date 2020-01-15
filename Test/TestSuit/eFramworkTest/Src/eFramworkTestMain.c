@@ -2,7 +2,7 @@
 /*! 
     @file     eFramworkTestMain.c
     @author   kevin
-		@email		kevin.truong.ds@gmail.com
+    @email    kevin.truong.ds@gmail.com
     @section LICENSE
     Software License Agreement (BSD License)
     Copyright (c) 2015 kevin
@@ -31,7 +31,7 @@
 /**************************************************************************/
 
 /******************************************************************************/ 
-/* 										  			Include section 																*/
+/*                            Include section                                 */
 /******************************************************************************/ 
 #include <stdio.h>
 #include "eInclude.h"
@@ -40,63 +40,63 @@
 #include "eOsalTaskHandle.h"
 
 /******************************************************************************/ 
-/*   			Local Constant and compile switch definition section								*/
+/*        Local Constant and compile switch definition section                */
 /******************************************************************************/ 
 
 
 /******************************************************************************/ 
-/*  										Local Type definition section													*/
-/******************************************************************************/ 
-
-
-
-/******************************************************************************/ 
-/*  								Local Macro definition section														*/
+/*                      Local Type definition section                         */
 /******************************************************************************/ 
 
 
 
 /******************************************************************************/ 
-/*  								Local (static) variable definition section								*/
+/*                  Local Macro definition section                            */
 /******************************************************************************/ 
 
 
 
 /******************************************************************************/ 
-/*  								Local (static) function declaration section								*/
+/*                  Local (static) variable definition section                */
 /******************************************************************************/ 
 
 
 
 /******************************************************************************/ 
-/*									Local function definition section 												*/
+/*                  Local (static) function declaration section               */
+/******************************************************************************/ 
+
+
+
+/******************************************************************************/ 
+/*                  Local function definition section                         */
 /******************************************************************************/ 
 CuSuite* eFramework_GetTestSuite();
 
 /******************************************************************************/ 
-/*  						Global function definition section 														*/
+/*              Global function definition section                            */
 /******************************************************************************/
 void RunAllTests(void) {
-	CuString *output = CuStringNew();
-	CuSuite* suite = CuSuiteNew();
+  CuString *output = CuStringNew();
+  CuSuite* suite = CuSuiteNew();
 
-	CuSuiteAddSuite(suite, eFramework_GetTestSuite());
+  CuSuiteAddSuite(suite, eFramework_GetTestSuite());
 
-	CuSuiteRun(suite);
-	CuSuiteSummary(suite, output);
-	CuSuiteDetails(suite, output);
-	printf("%s\n", output->buffer);
+  CuSuiteRun(suite);
+  CuSuiteSummary(suite, output);
+  CuSuiteDetails(suite, output);
+  printf("%s\n", output->buffer);
 }
 /**************************************************************************/
 /*! 
     @brief  TODO template for code document  
     @param  TODO
     @param  
-		@return TODO
+    @return TODO
 */
 /**************************************************************************/
 Int32 main(Void)
 {
-	RunAllTests();
-	return 0;
+  RunAllTests();
+  return 0;
 }

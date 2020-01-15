@@ -2,7 +2,7 @@
 /*! 
     @file     eTimerHandler.h
     @author   kevin
-		@email		kevin.truong.ds@gmail.com
+    @email    kevin.truong.ds@gmail.com
     @section LICENSE
     Software License Agreement (BSD License)
     Copyright (c) 2015 kevin
@@ -39,12 +39,12 @@ extern "C"
 
 
 /******************************************************************************/
-/* 										  			Include section 																*/
+/*                            Include section                                 */
 /******************************************************************************/
 #include "eInclude.h"
 #include "eTimer.h"
 /******************************************************************************/
-/* 										  			Type definition section													*/
+/*                            Type definition section                         */
 /******************************************************************************/
 typedef Error_t (*AddNewTimer)(eTimer_t *);
 
@@ -61,11 +61,11 @@ typedef struct TimerHandlerQueue_Inf_st {
 } TimerHandleQueueInf_st;
 
 /******************************************************************************/
-/* 										  			Macro definition section												*/
+/*                            Macro definition section                        */
 /******************************************************************************/
 
 /******************************************************************************/
-/* 							  			 Function declaration section													*/
+/*                       Function declaration section                         */
 /******************************************************************************/
 TimerHandleQueueInf_st *eTimerHandlerRegisterInf();
 
