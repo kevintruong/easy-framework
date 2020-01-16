@@ -25,4 +25,4 @@ add_executable(eframework
         Test/eTestMain/eMain.c
         Test/TestModule/Inc/eTestModule.h
         Test/TestModule/Src/eTestModule.c
-        )
+        eFrameWork/Src/eLogger.c eFrameWork/Inc/eLogger.h)
