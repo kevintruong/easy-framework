@@ -54,31 +54,32 @@
 /*                  Local (static) variable definition section                */
 /******************************************************************************/
 eTask_t *pTestModuleTask;
+UInt32 count = 0;
 /******************************************************************************/
 /*                  Local (static) function declaration section               */
 /******************************************************************************/
 Void eTestModule_TaskProcessing(Void *Object);
+
 Error_t TestModuleTaskConfigure();
 /******************************************************************************/
 /*                  Local function definition section                         */
 /******************************************************************************/
-Error_t TestModuleTaskConfigure(){
-  if(!pTestModuleTask)
-  {
-    return E_ERR_NULL_MEMALLOCFUNC;
-  }
-  pTestModuleTask->IsTriggerProcess = False;
-  pTestModuleTask->TaskId = pTestModuleTask;
-  pTestModuleTask->taskHandle = eTestModule_TaskProcessing;
-  pTestModuleTask->taskSuspend = NULL;
-  pTestModuleTask->taskResume = NULL;
-  pTestModuleTask->TaskPriority = NORMAL_LEVEL;
-  return E_SUCCESS;
+Error_t TestModuleTaskConfigure() {
+    if (!pTestModuleTask) {
+        return E_ERR_NULL_MEMALLOCFUNC;
+    }
+    pTestModuleTask->IsTriggerProcess = False;
+    pTestModuleTask->TaskId = pTestModuleTask;
+    pTestModuleTask->taskHandle = eTestModule_TaskProcessing;
+    pTestModuleTask->taskSuspend = NULL;
+    pTestModuleTask->taskResume = NULL;
+    pTestModuleTask->TaskPriority = NORMAL_LEVEL;
+    return E_SUCCESS;
 }
-Void eTestModule_TaskProcessing(Void *Object)
-{
-  printf("Hello, I'm Test Module Processing \n");
-  return;
+
+Void eTestModule_TaskProcessing(Void *Object) {
+    printf("Hello, I'm Test Module Processing %s\n", Object);
+    return;
 }
 /******************************************************************************/
 /*              Global function definition section                            */
@@ -92,45 +93,40 @@ Void eTestModule_TaskProcessing(Void *Object)
  @return TODO
  */
 /**************************************************************************/
-Error_t eTestModule_Init()
-{
-  Error_t errCode = E_SUCCESS;
-  pTestModuleTask = malloc(sizeof(eTask_t));
-  if (!pTestModuleTask)
-  {
-    return errCode = E_ERR_NULL_MEMALLOCFUNC;
-  }
-  TestModuleTaskConfigure();
+Error_t eTestModule_Init() {
+    Error_t errCode = E_SUCCESS;
+    pTestModuleTask = malloc(sizeof(eTask_t));
+    if (!pTestModuleTask) {
+        return errCode = E_ERR_NULL_MEMALLOCFUNC;
+    }
+    TestModuleTaskConfigure();
 
-  eTaskHandleInf_t *pTaskHandlerInf = eOsalTaskHandle_RegisterInf();
+    eTaskHandleInf_t *pTaskHandlerInf = eOsalTaskHandle_RegisterInf();
 
-  pTaskHandlerInf->Add(pTestModuleTask);
-  return errCode;
+    pTaskHandlerInf->Add(pTestModuleTask);
+    return errCode;
 }
 
 
-Error_t eTestModule_Init1()
-{
-  Error_t errCode = E_SUCCESS;
-  eTask_t *ptestModule1;
-  ptestModule1 = malloc(sizeof(eTask_t));
-  if (!pTestModuleTask)
-  {
-    return errCode = E_ERR_NULL_MEMALLOCFUNC;
-  }
-  ptestModule1->IsTriggerProcess = True;
-  ptestModule1->taskHandle = eTestModule_TaskProcessing;
-  ptestModule1->TaskId = ptestModule1;
-
-  eTaskHandleInf_t *pTaskHandlerInf = eOsalTaskHandle_RegisterInf();
-
-  pTaskHandlerInf->Add(ptestModule1);
-  return errCode;
+Error_t eTestModule_Init1() {
+    Error_t errCode = E_SUCCESS;
+    eTask_t *ptestModule1;
+    ptestModule1 = malloc(sizeof(eTask_t));
+    if (!pTestModuleTask) {
+        return errCode = E_ERR_NULL_MEMALLOCFUNC;
+    }
+    char *test = calloc(1, 255);
+    ptestModule1->pData = test;
+    snprintf(test, 255, "value of test %d", count++);
+    ptestModule1->IsTriggerProcess = True;
+    ptestModule1->taskHandle = eTestModule_TaskProcessing;
+    ptestModule1->TaskId = ptestModule1;
+    eTaskHandleInf_t *pTaskHandlerInf = eOsalTaskHandle_RegisterInf();
+    pTaskHandlerInf->Add(ptestModule1);
+    return errCode;
 }
 
-Error_t eTestModule_Deinit()
-{
-  Error_t errCode = E_SUCCESS;
-
-  return errCode;
+Error_t eTestModule_Deinit() {
+    Error_t errCode = E_SUCCESS;
+    return errCode;
 }

@@ -106,7 +106,7 @@ Void eOsal_Schedule(Void) {
     do {
         if (curr->curTask) {
             if (curr->curTask->IsTriggerProcess) {
-                curr->curTask->taskHandle(NULL);
+                curr->curTask->taskHandle(curr->curTask->pData);
             }
         }
         curr = curr->pNextTask;

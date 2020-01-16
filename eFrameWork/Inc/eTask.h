@@ -65,6 +65,7 @@ typedef struct eTask_st {
     TaskHandleFn taskHandle;        /*<<<! Function pointer point to Function process a task  */
     TaskResumeFn taskResume;        /*<<<! Resume current task */
     TaskSuspendFn taskSuspend;        /*<<<! suspend the task.  */
+    Void *pData;
 } eTask_t;
 
 /******************************************************************************/
