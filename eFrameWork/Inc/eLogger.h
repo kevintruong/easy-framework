@@ -4,7 +4,9 @@
 extern "C" {
 #endif
 #define MAX_STRING_LENGTH 255
+#define MAX_DEBUG_STRING 1024
 
+#include <stdio.h>
 #include "eInclude.h"
 
 typedef enum LogMode_en {
@@ -34,9 +36,9 @@ typedef struct LogLevel {
     Char m_color[32];
 } LogLevel_t;
 
-typedef char *(*formatterFn)(char *format, ...);
+typedef char *(*formatterFn)(const Char *format, va_list args);
 
-typedef void (*emitterFn)(char *);
+typedef void (*emitterFn)(const Char *);
 
 typedef void (*logDbFn)(char *format, ...);
 
@@ -47,14 +49,14 @@ typedef struct eLoggerConfig_st {
     emitterFn m_emittorFn;
 } eLoggerConfig_t;
 
-typedef struct eLoggerDb_st {
-    logDbFn debug;
-    logDbFn warn;
-    logDbFn info;
-} eLoggerDb_t;
+
+typedef struct eLogger_st {
+    eLoggerConfig_t *m_config;
+} eLogger_t;
 
 
-Error_t eLogger_create(eLoggerConfig_t *loggerConfig);
+eLogger_t *eLogger_create(eLoggerConfig_t *loggerConfig);
+Error_t eLogger_log(eLogger_t *thisloger, LogLevelType_t loglevel, const Char *fmt, ...);
 
 #ifdef __cplusplus /* If this is a C++ compiler, use C linkage */
 }

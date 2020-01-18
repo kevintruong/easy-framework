@@ -37,7 +37,7 @@
 #include "eInclude.h"
 #include "../Inc/eTestModule.h"
 #include "eOsalTaskHandle.h"
-
+#include <stdlib.h>
 /******************************************************************************/
 /*        Local Constant and compile switch definition section                */
 /******************************************************************************/
