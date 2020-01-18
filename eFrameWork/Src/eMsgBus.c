@@ -47,18 +47,22 @@ Error_t eMsgBus_register(UInt32 taskId, UInt32 *msgIdList, UInt32 size) {
     msgIdListObj->m_size = size;
     msgIdListObj->m_taskId = taskId;
     subList->addfirst(subList, msgIdListObj, sizeof(SubMsgIdList_t));
+    free(msgIdListObj->m_msgIdList);
+    free(msgIdListObj);
     return E_SUCCESS;
 }
 
 Error_t eMsgBus_unregister(UInt32 taskId) {
     SubMsgIdList_t *subMsgId;
-    int index = 0;
+    int index;
     qlist_obj_t obj;
+
     memset((void *) &obj, 0, sizeof(obj));  // must be cleared before call
+    index = 0;
     while (subList->getnext(subList, &obj, false) == true) {
         subMsgId = (SubMsgIdList_t *) obj.data;
         if (subMsgId->m_taskId == taskId) {
-            subList->popat(subList, index, NULL);
+            subList->removeat(subList, index);
         }
         ++index;
     }
