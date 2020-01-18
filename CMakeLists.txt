@@ -3,10 +3,20 @@ project(eframework C CXX)
 
 set(CMAKE_C_STANDARD 11)
 
+add_subdirectory(Lib/qlibc)
+include_directories(Lib/qlibc/include)
+
 include_directories(CuTest)
 include_directories(eFrameWork/eInclude)
 include_directories(eFrameWork/Inc)
 include_directories(Test/TestModule/Inc)
+
+include(cmake/googletest.cmake)
+fetch_googletest(
+        ${PROJECT_SOURCE_DIR}/cmake
+        ${PROJECT_BINARY_DIR}/googletest
+)
+
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D__FILE_NAME__='\"$(notdir $(abspath $<))\"'")
 
@@ -27,14 +37,11 @@ add_library(eframework
         Test/eTestMain/eMain.c
         Test/TestModule/Inc/eTestModule.h
         Test/TestModule/Src/eTestModule.c
-        eFrameWork/Src/eLogger.c eFrameWork/Inc/eLogger.h)
+        eFrameWork/Src/eLogger.c
+        eFrameWork/Src/eMsgBus.c
+        eFrameWork/Inc/eLogger.h
+        eFrameWork/Inc/eMsgBus.h)
 
-
-include(cmake/googletest.cmake)
-fetch_googletest(
-        ${PROJECT_SOURCE_DIR}/cmake
-        ${PROJECT_BINARY_DIR}/googletest
-)
 
 enable_testing()
 add_subdirectory(Test)
