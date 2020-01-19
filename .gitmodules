@@ -1,3 +1,6 @@
 [submodule "Lib/qlibc"]
 	path = Lib/qlibc
 	url = https://github.com/wolkykim/qlibc
+[submodule "Lib/mleakdetect"]
+	path = Lib/mleakdetect
+	url = https://github.com/yasuoka/mleakdetect.git

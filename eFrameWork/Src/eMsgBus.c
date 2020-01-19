@@ -9,6 +9,7 @@
 #include "qlibc/qlibc.h"
 #include <stdlib.h>
 #include <string.h>
+#include <eMem.h>
 
 typedef struct SubMsgIdList_st {
     UInt32 m_taskId;
@@ -26,6 +27,8 @@ Error_t eMsgBus_init() {
 }
 
 Error_t eMsgBus_deinit() {
+    msgQueue->free(msgQueue);
+    subList->free(subList);
     return E_SUCCESS;
 }
 
@@ -41,14 +44,14 @@ Error_t eMsgBus_handler(Void *obj) {
  * @return
  */
 Error_t eMsgBus_register(UInt32 taskId, UInt32 *msgIdList, UInt32 size) {
-    SubMsgIdList_t *msgIdListObj = (SubMsgIdList_t *) calloc(1, sizeof(msgIdList));
-    msgIdListObj->m_msgIdList = (UInt32 *) calloc(1, size);
+    SubMsgIdList_t *msgIdListObj = (SubMsgIdList_t *) e_calloc(1, sizeof(msgIdList));
+    msgIdListObj->m_msgIdList = (UInt32 *) e_calloc(1, size);
     memcpy(msgIdListObj->m_msgIdList, msgIdList, size);
     msgIdListObj->m_size = size;
     msgIdListObj->m_taskId = taskId;
     subList->addfirst(subList, msgIdListObj, sizeof(SubMsgIdList_t));
-    free(msgIdListObj->m_msgIdList);
-    free(msgIdListObj);
+    e_free(msgIdListObj->m_msgIdList);
+    e_free(msgIdListObj);
     return E_SUCCESS;
 }
 

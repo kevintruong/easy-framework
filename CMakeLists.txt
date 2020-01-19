@@ -3,6 +3,8 @@ project(eframework C CXX)
 
 set(CMAKE_C_STANDARD 11)
 
+
+#add_subdirectory(Lib/mleakdetect)
 add_subdirectory(Lib/qlibc)
 include_directories(Lib/qlibc/include)
 
@@ -19,6 +21,8 @@ fetch_googletest(
 
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D__FILE_NAME__='\"$(notdir $(abspath $<))\"'")
+add_definitions(-DMEMLEAK_DEBUG)
+add_definitions(-fPIC -D_GNU_SOURCE)
 
 add_library(eframework
         eFrameWork/eInclude/eError.h
@@ -40,7 +44,7 @@ add_library(eframework
         eFrameWork/Src/eLogger.c
         eFrameWork/Src/eMsgBus.c
         eFrameWork/Inc/eLogger.h
-        eFrameWork/Inc/eMsgBus.h)
+        eFrameWork/Inc/eMsgBus.h eFrameWork/Src/eMem.c eFrameWork/Inc/eMem.h eFrameWork/Src/eMem_LeakDetect_Impl.h eFrameWork/Src/eMem_LeakDetect_Impl.c)
 
 
 enable_testing()

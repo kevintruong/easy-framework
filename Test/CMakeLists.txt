@@ -11,11 +11,8 @@ target_link_libraries(
         gtest_main
         eframework
         qlibc
+        dl
 )
 
-add_test(
-        NAME
-        unit
-        COMMAND
-        ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR}/unit_tests
-)
+add_test(NAME unit COMMAND ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR}/unit_tests)
+
