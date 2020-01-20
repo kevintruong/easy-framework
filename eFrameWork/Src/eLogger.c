@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <time.h>
-
+#include "eMem.h"
 
 /************************************************************************************/
 /*                                DEFINE SECTION                                    */
@@ -33,7 +33,7 @@ static const LogLevel_t LogHeader[] = {
 /************************************************************************************/
 Char *eLogger_standardFormatter(const Char *fmt, va_list args) {
     /* Get current time */
-    Char *buff = (Char *) calloc(1, MAX_DEBUG_STRING);
+    Char *buff = (Char *) e_calloc(1, MAX_DEBUG_STRING);
     vsnprintf(buff, MAX_DEBUG_STRING, fmt, args);
     return buff;
 }
@@ -51,7 +51,7 @@ Void eLogger_standardEmitter(const Char *dbString) {
 /*                                GLOBAL FUNCTION DEFINE                             */
 /************************************************************************************/
 eLogger_t *eLogger_create(eLoggerConfig_t *loggerConfig) {
-    eLogger_t *thisLogger = (eLogger_t *) calloc(1, sizeof(eLogger_t));
+    eLogger_t *thisLogger = (eLogger_t *) e_calloc(1, sizeof(eLogger_t));
     if (thisLogger == NULL) {
         return NULL;
     }
@@ -78,7 +78,7 @@ Error_t eLogger_log(eLogger_t *thisloger, LogLevelType_t loglevel, const Char *f
         return E_SUCCESS;
     }
 
-    buffer = (Char *) calloc(1, MAX_DEBUG_STRING);
+    buffer = (Char *) e_calloc(1, MAX_DEBUG_STRING);
     if (!buffer) {
         return E_ERR_NULL_MEMALLOCFUNC;
     }
@@ -96,7 +96,7 @@ Error_t eLogger_log(eLogger_t *thisloger, LogLevelType_t loglevel, const Char *f
     va_end(args);
     strcat(buffer, formattedDbStr);
     thisloger->m_config->m_emittorFn(buffer);
-    free(buffer);
-    free(formattedDbStr);
+    e_free(buffer);
+    e_free(formattedDbStr);
     return E_SUCCESS;
 }
