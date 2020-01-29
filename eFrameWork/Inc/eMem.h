@@ -4,6 +4,11 @@
 
 #ifndef EFRAMEWORK_EMEM_H
 #define EFRAMEWORK_EMEM_H
+#ifdef __cplusplus /* If this is a C++ compiler, use C linkage */
+extern "C" {
+#endif
+
+#include <stdio.h>
 
 void *e_malloc(size_t size);
 
@@ -19,5 +24,7 @@ int e_asprintf(char **ret, const char *format, ...);
 
 void e_free(void *mem);
 
-
+#ifdef __cplusplus /* If this is a C++ compiler, use C linkage */
+}
+#endif
 #endif //EFRAMEWORK_EMEM_H

@@ -43,7 +43,7 @@
 *.obj
 *.elf
 
-# Linker output
+# Post output
 *.ilk
 *.map
 *.exp
