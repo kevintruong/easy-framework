@@ -156,4 +156,5 @@ bss (__bss_start) 0x601040
 
 interesting here that the output of `example_posix` and the `nm`  (value of `<section>_start` look like the same. the reason for that is because of Virtual Memory.
 So, Linux uses Virtual memory mapping each procecss will create for itself virtual memory mapping will have another post about `virtual memory` to detail about it.
-But now we can see that by custom linker script we can identify the segments (text, data, bss)
+But now we can see that by custom linker script we can identify the segments (text, data, bss) about detail of linker segment it should be in another post about `compile`
+
