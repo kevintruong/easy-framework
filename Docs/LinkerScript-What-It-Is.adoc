@@ -1,4 +1,9 @@
-= LinkerScript - What It is ?
+---
+title: "Linker - LinkerScript"
+date: 2020-02-28T23:29:49+07:00
+tag: ["embedded-system","programming","C/C++"]
+author: "Kevin Truong"
+---
 == LinkerScript - How to get it
 
 Linker script will using by `ld` tool.
