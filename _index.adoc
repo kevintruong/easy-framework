@@ -1,0 +1,17 @@
+---
+title: "Easy Framework"
+date: 2020-02-28T23:29:49+07:00
+tag: ["embedded-system","programming","C/C++"]
+author: "Kevin Truong"
+---
+
+:projectdir: ../../
+:imagesdir: ${projectdir}/assets/
+:toclevels: 4
+:toc:
+:sectnums:
+:source-highlighter: coderay
+:sectnumlevels: 5
+:includedir: ./content/projects/workspace-rsync/
+
+include::{includedir}/README.adoc[tags=readme]
